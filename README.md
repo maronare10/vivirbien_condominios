@@ -12,4 +12,8 @@ Páginas de referencia:
 
 * Model field reference: https://docs.djangoproject.com/en/3.2/ref/models/fields/#model-field-types
 
-*  Como instalar jwt: https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html
+* Como instalar jwt: https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html
+
+* Para dar permisos a los endpoints: https://www.django-rest-framework.org/api-guide/permissions/
+
+* Configuración por defectode Simple JWT: https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html
