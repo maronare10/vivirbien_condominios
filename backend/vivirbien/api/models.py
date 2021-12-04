@@ -16,7 +16,7 @@ class Edificio (models.Model):
     departamentos = models.PositiveSmallIntegerField(default=0)
     pisos = models.PositiveSmallIntegerField(default=0)
 
-    condominio = models.ForeignKey(Condominio, related_name='condminios', on_delete=models.CASCADE)
+    condominio = models.ForeignKey(Condominio, related_name='condominios', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nombre
