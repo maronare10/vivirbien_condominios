@@ -1,0 +1,255 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$4fisD0nuPfx5Ff17zkjjan$ctLpfYpK5UEhLivi9I7iMAQfJzNHBatPoBrml9F3Nj8=",
+            "last_login": "2021-12-04T14:03:40.352Z",
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "email": "admin@vivirbien.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2021-12-04T14:03:23.472Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$HYIrMpIi9fofcgcKTHEPch$c2MmjpC1ZQzGPrOGyACay5ftkiCce9FkfUO9LWCJYgM=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "mnavarro@santaelvira.com",
+            "first_name": "Mariana",
+            "last_name": "Navarro",
+            "email": "mnavarro@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-04T14:04:06Z",
+            "groups": [
+                1,
+                2,
+                3
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$wSogTP6mFca93yQ8QyB8Yf$wPFtc/IwZ+mTtR5/1ocS+jqT89yoFnW6152+Y5+PcLI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "samy@santaelvira.com",
+            "first_name": "Samy",
+            "last_name": "",
+            "email": "samy@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-04T14:06:32Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$B3d8jEhaSqCWyiGqiJto43$qYKG+rXAoZCamzg/ktEnd7NoqpJR799hBr+KNiPeanc=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "mateo@colibri.com",
+            "first_name": "Mateo",
+            "last_name": "",
+            "email": "mateo@colibri.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-04T14:13:01Z",
+            "groups": [
+                1,
+                2,
+                3
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$GAtRMHQLWlYrsSxy0f0hro$9OQ4rpu/NaPIXuSR3Jcmq+/t7o8PZm0FwGVyliZSlWE=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "leo@colibri.com",
+            "first_name": "Leo",
+            "last_name": "",
+            "email": "leo@colibri.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-04T14:40:43Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.group",
+        "pk": 1,
+        "fields": {
+            "name": "administrador",
+            "permissions": []
+        }
+    },
+    {
+        "model": "auth.group",
+        "pk": 2,
+        "fields": {
+            "name": "propietario",
+            "permissions": []
+        }
+    },
+    {
+        "model": "auth.group",
+        "pk": 3,
+        "fields": {
+            "name": "junta de propietarios",
+            "permissions": []
+        }
+    },
+    {
+        "model": "api.condominio",
+        "pk": 1,
+        "fields": {
+            "nombre": "Residencial Santa Elvira",
+            "propietario": 2
+        }
+    },
+    {
+        "model": "api.condominio",
+        "pk": 2,
+        "fields": {
+            "nombre": "Colibri",
+            "propietario": 4
+        }
+    },
+    {
+        "model": "api.edificio",
+        "pk": 1,
+        "fields": {
+            "nombre": "Duraznos",
+            "departamentos": 32,
+            "pisos": 8,
+            "condominio": 1
+        }
+    },
+    {
+        "model": "api.edificio",
+        "pk": 2,
+        "fields": {
+            "nombre": "Tokio",
+            "departamentos": 96,
+            "pisos": 8,
+            "condominio": 2
+        }
+    },
+    {
+        "model": "api.edificio",
+        "pk": 3,
+        "fields": {
+            "nombre": "Cedros",
+            "departamentos": 80,
+            "pisos": 8,
+            "condominio": 1
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 1,
+        "fields": {
+            "numero": 101,
+            "piso": 1,
+            "edificios": 1,
+            "propietarios": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 2,
+        "fields": {
+            "numero": 201,
+            "piso": 2,
+            "edificios": 1,
+            "propietarios": [
+                3
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 3,
+        "fields": {
+            "numero": 101,
+            "piso": 1,
+            "edificios": 2,
+            "propietarios": [
+                4
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 4,
+        "fields": {
+            "numero": 101,
+            "piso": 1,
+            "edificios": 3,
+            "propietarios": [
+                3
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 5,
+        "fields": {
+            "numero": 201,
+            "piso": 2,
+            "edificios": 2,
+            "propietarios": [
+                5
+            ]
+        }
+    },
+    {
+        "model": "api.servicio",
+        "pk": 1,
+        "fields": {
+            "nombre": "mantenimiento"
+        }
+    },
+    {
+        "model": "api.servicio",
+        "pk": 2,
+        "fields": {
+            "nombre": "cuota extraordinaria"
+        }
+    },
+    {
+        "model": "api.servicio",
+        "pk": 3,
+        "fields": {
+            "nombre": "alquiler de areas comunes"
+        }
+    }
+]

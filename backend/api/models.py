@@ -23,14 +23,14 @@ class Edificio (models.Model):
 
 
 class Departamento (models.Model):
-    numero = models.PositiveSmallIntegerField(default=0)
-    piso = models.PositiveSmallIntegerField(default=0)
+    numero = models.PositiveSmallIntegerField()
+    piso = models.PositiveSmallIntegerField()
 
     edificios = models.ForeignKey(Edificio, related_name='edificios', on_delete=models.CASCADE)
     propietarios = models.ManyToManyField(User)
 
     def __str__(self):
-        return self.numero
+        return str(self.numero)
 
 class Servicio (models.Model):
     nombre = models.CharField(max_length=50)

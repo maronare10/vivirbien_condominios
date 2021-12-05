@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.fields import CharField
-from .models import Servicio, Condominio
+from .models import Edificio, Servicio, Condominio, Departamento
 from django.contrib.auth import password_validation, authenticate
 from django.contrib.auth.models import Group, User, Group
 from rest_framework.validators import UniqueValidator
@@ -40,6 +40,11 @@ class RegistrarCondominioSerializer(serializers.Serializer):
     condominio_propietario.groups.add(grupo_admin)
 
     return condominio_propietario
+
+class DepartamentoSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Departamento
+    fields = '__all__'
 
 
 class ServicioSerializer(serializers.ModelSerializer):

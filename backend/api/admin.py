@@ -3,11 +3,16 @@ from django.contrib import admin
 from .models import Condominio, Edificio, Departamento, Servicio, Pago
 
 
-# Register your models here.
+class DepartamentoAdmin(admin.ModelAdmin):
+    list_display = ('numero', 'piso', 'edificios', 'get_condominio')
+
+    @admin.display(description='Condominio')
+    def get_condominio(self, obj):
+        return obj.edificios.condominio.nombre
 
 admin.site.register(Condominio)
 admin.site.register(Edificio)
-admin.site.register(Departamento)
+admin.site.register(Departamento, DepartamentoAdmin)
 admin.site.register(Servicio)
 admin.site.register(Pago)
 

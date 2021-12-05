@@ -1,11 +1,26 @@
 from django.urls import path
-
-from . import views
+from django.urls.resolvers import URLPattern
+from . import (
+    views_condominios,
+    views_servicios,
+    views_edificios,
+    views_departamentos,
+    views_pagos,
+)
 
 urlpatterns = [
-    path('servicios', views.servicios),
-    path('servicios/<int:servicio_id>', views.servicio),
-    path('registrar_condominio', views.registrar_condominio),
+    path('registrar_condominio',views_condominios.registrar_condominio),
 
+    # path('edificios',views_edificios.EdificiosListCreate.as_view()),
+    # path('edificios/<int:pk>', views_edificios.EdificiosRetrieveUpdateDestroy.as_view()),
+    
+    path('departamentos', views_departamentos.DepartamentosListCreate.as_view()),
+    path('departamentos/<int:pk>', views_departamentos.DepartamentosRetrieveUpdateDestroy.as_view()),
 
+    path('servicios', views_servicios.servicios),
+    path('servicios/<int:servicio_id>', views_servicios.servicio),
+
+    # path('pagos', views_pagos.PagosListCreate.as_view()),
+    # path('pagos/<int:pk>,',views_pagos.PagosRetrieveUpdateDestroy.as_view()),
 ]
+    

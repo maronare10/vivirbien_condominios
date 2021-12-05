@@ -17,3 +17,7 @@ Páginas de referencia:
 * Para dar permisos a los endpoints: https://www.django-rest-framework.org/api-guide/permissions/
 
 * Configuración por defectode Simple JWT: https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html
+
+* Propiedades para personalizar el administrador: https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display
+
+* Ayuda a personalizar los campos del administrador: https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#the-display-decorator
