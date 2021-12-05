@@ -3,6 +3,7 @@ from .models import Condominio, Edificio, Departamento, Servicio, Pago
 from django.contrib.auth import password_validation
 from django.contrib.auth.models import Group, User, Group
 from rest_framework.validators import UniqueValidator
+from django.contrib.auth.models import User
 
 class RegistrarCondominioSerializer(serializers.Serializer):
   email = serializers.EmailField(
@@ -50,13 +51,10 @@ class EdificioSerializer(serializers.ModelSerializer):
     model = Edificio
     fields = '__all__'
 
-
-
 class DepartamentoSerializer(serializers.ModelSerializer):
   class Meta:
     model = Departamento
     fields = '__all__'
-
 
 class ServicioSerializer(serializers.ModelSerializer):
   class Meta:
@@ -68,3 +66,7 @@ class PagoSerializer(serializers.ModelSerializer):
     model = Pago
     fields = ['id', 'monto_a_pagar', 'vencimiento', 'departamento', 'servicio', 'pagado_por']
 
+class PropietarioSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = User
+    fields = ['username', 'first_name', 'last_name', 'email', ]

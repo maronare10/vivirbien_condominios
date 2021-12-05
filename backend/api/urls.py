@@ -6,6 +6,7 @@ from . import (
     views_edificios,
     views_departamentos,
     views_pagos,
+    views_propietarios,
 )
 
 urlpatterns = [
@@ -24,4 +25,7 @@ urlpatterns = [
 
     path('pagos', views_pagos.PagosListCreate.as_view()),
     path('pagos/<int:pk>', views_pagos.PagosRetrieveUpdateDestroy.as_view()),
+
+    path('propietarios', views_propietarios.PropietariosListCreate.as_view()),
+    path('propietarios/<int:pk>', views_propietarios.PropietariosRetrieveUpdateDestroy.as_view()),
 ]
