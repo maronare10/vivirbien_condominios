@@ -1,7 +1,6 @@
 from rest_framework import serializers
-from rest_framework.fields import CharField
-from .models import Edificio, Servicio, Condominio, Departamento
-from django.contrib.auth import password_validation, authenticate
+from .models import Condominio, Edificio, Departamento, Servicio, Pago
+from django.contrib.auth import password_validation
 from django.contrib.auth.models import Group, User, Group
 from rest_framework.validators import UniqueValidator
 
@@ -57,4 +56,9 @@ class ServicioSerializer(serializers.ModelSerializer):
   class Meta:
     model = Servicio
     fields = '__all__'
+
+class PagoSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Pago
+    fields = ['id', 'monto_a_pagar', 'vencimiento', 'departamento', 'servicio', 'pagado_por']
 

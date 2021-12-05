@@ -42,15 +42,15 @@ class Servicio (models.Model):
 
 class Pago (models.Model):
     monto_a_pagar = models.DecimalField(max_digits=9,decimal_places=2)
-    monto_pagado = models.DecimalField(max_digits=9,decimal_places=2)
-    numero_operacion = models.CharField(max_length=30)
-    vencimiento = models.DateTimeField(null=True, blank=True)
+    monto_pagado = models.DecimalField(max_digits=9,decimal_places=2, blank=True, null=True)
+    numero_operacion = models.CharField(max_length=30, blank=True, null=True)
+    vencimiento = models.DateField()
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now_add=True)
     
     departamento = models.ForeignKey(Departamento, related_name='pago_departamento', on_delete=models.CASCADE)
-    propietario = models.ForeignKey(User, related_name='pago_propietario', on_delete=models.CASCADE)
+    pagado_por = models.ForeignKey(User, related_name='pago_pagado_por', on_delete=models.CASCADE, blank=True, null=True)
     servicio = models.ForeignKey(Servicio, related_name='pago_servicio', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.propietario
+        return str(self.departamento)
