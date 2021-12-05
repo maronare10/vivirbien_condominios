@@ -7,7 +7,9 @@ from .serializers import ServicioSerializer
 @api_view(['GET', 'POST'])
 def servicios(request):
     if request.method == 'GET':
-        listaServicios = Servicio.objects.all()
+        usuarioLogueado = request.user
+        condominiosDelUsuario = usuarioLogueado.condominio_set.all()
+        listaServicios = Servicio.objects.filter(condominio__in=condominiosDelUsuario)
         serializersServicios = ServicioSerializer(listaServicios, many=True)
         return Response(serializersServicios.data)
     elif request.method == 'POST':
