@@ -11,8 +11,8 @@ from . import (
 urlpatterns = [
     path('registrar_condominio',views_condominios.registrar_condominio),
 
-    # path('edificios',views_edificios.EdificiosListCreate.as_view()),
-    # path('edificios/<int:pk>', views_edificios.EdificiosRetrieveUpdateDestroy.as_view()),
+    path('edificios',views_edificios.EdificiosListCreate.as_view()),
+    path('edificios/<int:pk>', views_edificios.EdificiosRetrieveUpdateDestroy.as_view()),
     
     path('departamentos', views_departamentos.DepartamentosListCreate.as_view()),
     path('departamentos/<int:pk>', views_departamentos.DepartamentosRetrieveUpdateDestroy.as_view()),
@@ -23,4 +23,3 @@ urlpatterns = [
     # path('pagos', views_pagos.PagosListCreate.as_view()),
     # path('pagos/<int:pk>,',views_pagos.PagosRetrieveUpdateDestroy.as_view()),
 ]
-    

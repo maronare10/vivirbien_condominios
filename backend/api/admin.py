@@ -4,11 +4,11 @@ from .models import Condominio, Edificio, Departamento, Servicio, Pago
 
 
 class DepartamentoAdmin(admin.ModelAdmin):
-    list_display = ('numero', 'piso', 'edificios', 'get_condominio')
+    list_display = ('numero', 'piso', 'edificio', 'get_condominio')
 
     @admin.display(description='Condominio')
     def get_condominio(self, obj):
-        return obj.edificios.condominio.nombre
+        return obj.edificio.condominio.nombre
 
 admin.site.register(Condominio)
 admin.site.register(Edificio)

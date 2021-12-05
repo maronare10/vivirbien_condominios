@@ -16,7 +16,7 @@ class Edificio (models.Model):
     departamentos = models.PositiveSmallIntegerField(default=0)
     pisos = models.PositiveSmallIntegerField(default=0)
 
-    condominio = models.ForeignKey(Condominio, related_name='condominios', on_delete=models.CASCADE)
+    condominio = models.ForeignKey(Condominio, related_name='edificio_condominio', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nombre
@@ -26,7 +26,7 @@ class Departamento (models.Model):
     numero = models.PositiveSmallIntegerField()
     piso = models.PositiveSmallIntegerField()
 
-    edificios = models.ForeignKey(Edificio, related_name='edificios', on_delete=models.CASCADE)
+    edificio = models.ForeignKey(Edificio, related_name='departamento_edificio', on_delete=models.CASCADE)
     propietarios = models.ManyToManyField(User)
 
     def __str__(self):
@@ -34,6 +34,8 @@ class Departamento (models.Model):
 
 class Servicio (models.Model):
     nombre = models.CharField(max_length=50)
+
+    condominio = models.ForeignKey(Condominio, related_name='servicio_condominio', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nombre
@@ -46,10 +48,9 @@ class Pago (models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now_add=True)
     
-
-    departamento = models.ForeignKey(Departamento, related_name='pago_departamentos', on_delete=models.CASCADE)
-    propietario = models.ForeignKey(User, related_name='pago_propietarios', on_delete=models.CASCADE)
-    servicio = models.ForeignKey(Servicio, related_name='pago_servicios', on_delete=models.CASCADE)
+    departamento = models.ForeignKey(Departamento, related_name='pago_departamento', on_delete=models.CASCADE)
+    propietario = models.ForeignKey(User, related_name='pago_propietario', on_delete=models.CASCADE)
+    servicio = models.ForeignKey(Servicio, related_name='pago_servicio', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.propietario

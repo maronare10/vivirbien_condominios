@@ -4,11 +4,27 @@ Este proyecto es el backend para el api de l administrador de condominios y est�
 
 Para iniciar el proyecto se deben ejecutar los siguientes comandos en el directorio backend:
 
+```
 pip install -r requirements.txt
 
 python manage.py runserver
+```
 
-Páginas de referencia:
+### Como cargar data de prueba:
+
+El comando flush es para limpiar todos los registros de la base de datos:
+
+```
+python manage.py flush 
+```
+
+El comando loaddata es para cargar la data de prueba que se encuentra en db json:
+
+```
+python manage.py loaddata db 
+```
+
+### Páginas de referencia:
 
 * Model field reference: https://docs.djangoproject.com/en/3.2/ref/models/fields/#model-field-types
 

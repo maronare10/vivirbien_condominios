@@ -177,7 +177,7 @@
         "fields": {
             "numero": 101,
             "piso": 1,
-            "edificios": 1,
+            "edificio": 1,
             "propietarios": [
                 2
             ]
@@ -189,7 +189,7 @@
         "fields": {
             "numero": 201,
             "piso": 2,
-            "edificios": 1,
+            "edificio": 1,
             "propietarios": [
                 3
             ]
@@ -201,7 +201,7 @@
         "fields": {
             "numero": 101,
             "piso": 1,
-            "edificios": 2,
+            "edificio": 2,
             "propietarios": [
                 4
             ]
@@ -213,7 +213,7 @@
         "fields": {
             "numero": 101,
             "piso": 1,
-            "edificios": 3,
+            "edificio": 3,
             "propietarios": [
                 3
             ]
@@ -225,7 +225,7 @@
         "fields": {
             "numero": 201,
             "piso": 2,
-            "edificios": 2,
+            "edificio": 2,
             "propietarios": [
                 5
             ]
@@ -235,21 +235,32 @@
         "model": "api.servicio",
         "pk": 1,
         "fields": {
-            "nombre": "mantenimiento"
+            "nombre": "mantenimiento",
+            "condominio": 1
         }
     },
     {
         "model": "api.servicio",
         "pk": 2,
         "fields": {
-            "nombre": "cuota extraordinaria"
+            "nombre": "cuota extraordinaria",
+            "condominio": 1
         }
     },
     {
         "model": "api.servicio",
         "pk": 3,
         "fields": {
-            "nombre": "alquiler de areas comunes"
+            "nombre": "alquiler de areas comunes",
+            "condominio": 1
+        }
+    },
+    {
+        "model": "api.servicio",
+        "pk": 4,
+        "fields": {
+            "nombre": "mantenimiento",
+            "condominio": 2
         }
     }
 ]
