@@ -40,10 +40,16 @@ class RegistrarCondominioSerializer(serializers.Serializer):
 
     return condominio_propietario
 
+class CondominioSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Condominio
+    fields = '__all__'
+
 class EdificioSerializer(serializers.ModelSerializer):
   class Meta:
     model = Edificio
     fields = '__all__'
+
 
 
 class DepartamentoSerializer(serializers.ModelSerializer):

@@ -10,6 +10,8 @@ from . import (
 
 urlpatterns = [
     path('registrar_condominio',views_condominios.registrar_condominio),
+    
+    path('condominios', views_condominios.CondominiosList.as_view()),
 
     path('edificios',views_edificios.EdificiosListCreate.as_view()),
     path('edificios/<int:pk>', views_edificios.EdificiosRetrieveUpdateDestroy.as_view()),
