@@ -1,11 +1,11 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics
 from .models import Condominio, Edificio
-from .serializers import EdificiosSerializer
+from .serializers import EdificioSerializer
 
 class EdificiosListCreate(generics.ListCreateAPIView):
   queryset = Edificio.objects.all()
-  serializer_class = EdificiosSerializer 
+  serializer_class = EdificioSerializer 
   permission_class = (IsAuthenticated),
 
   def get_queryset(self):
@@ -16,7 +16,7 @@ class EdificiosListCreate(generics.ListCreateAPIView):
 
 class EdificiosRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
   queryset = Edificio.objects.all()
-  serializer_class = EdificiosSerializer
+  serializer_class = EdificioSerializer
   permission_classes = (IsAuthenticated),
 
   def get_queryset(self):
