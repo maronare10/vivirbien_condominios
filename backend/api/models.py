@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 
 class Condominio (models.Model):
@@ -47,6 +48,7 @@ class Pago (models.Model):
     vencimiento = models.DateField()
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now_add=True)
+    voucher = CloudinaryField('image', default='')
     
     departamento = models.ForeignKey(Departamento, related_name='pago_departamento', on_delete=models.CASCADE)
     pagado_por = models.ForeignKey(User, related_name='pago_pagado_por', on_delete=models.CASCADE, blank=True, null=True)

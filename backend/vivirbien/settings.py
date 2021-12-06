@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import cloudinary
 from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework_simplejwt',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +145,10 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=6),
 }
+
+cloudinary.config(
+  cloud_name = 'dvhcl2ifg',  
+  api_key = '159764341993181',  
+  api_secret = '4VFegS3W4eQT2yuTPBxIjGULmXQ'  
+)
+
