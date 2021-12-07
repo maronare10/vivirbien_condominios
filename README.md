@@ -37,3 +37,5 @@ python manage.py loaddata db
 * Propiedades para personalizar el administrador: https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display
 
 * Ayuda a personalizar los campos del administrador: https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#the-display-decorator
+
+* Documentación para desactivar la interfaz html para el API: https://www.django-rest-framework.org/api-guide/renderers/#jsonrenderer 
