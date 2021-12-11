@@ -12,8 +12,10 @@ class DepartamentosListCreate(generics.ListCreateAPIView):
 
     def get_queryset(self):
         condominiosDelUsuario = self.request.user.condominio_set.all()
+        print(condominiosDelUsuario)
         edificiosDelCondominio = Edificio.objects.filter(condominio__in=condominiosDelUsuario)
-        return self.queryset.filter(edificios__in=edificiosDelCondominio)
+        print(edificiosDelCondominio)
+        return self.queryset.filter(edificio__in=edificiosDelCondominio)
 
 
 class DepartamentosRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
@@ -25,4 +27,4 @@ class DepartamentosRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
         condominiosDelUsuario = self.request.user.condominio_set.all()
         edificiosDelCondominio = Edificio.objects.filter(
             condominio__in=condominiosDelUsuario)
-        return self.queryset.filter(edificios__in=edificiosDelCondominio)
+        return self.queryset.filter(edificio__in=edificiosDelCondominio)
