@@ -43,9 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework_simplejwt',
     'cloudinary',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.BrokenLinkEmailsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -154,4 +158,6 @@ cloudinary.config(
   api_key = '159764341993181',  
   api_secret = '4VFegS3W4eQT2yuTPBxIjGULmXQ'  
 )
+
+CORS_ORIGIN_ALLOW_ALL = True
 
