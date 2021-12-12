@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+*{
+    font-family: 'Nunito', sans-serif;
+    box-sizing: border-box;
+}
+.login{
+    width: 1141px ;
+    height: 700px ;
+}
+.asideLeft{
+    background: #75CFB8 ;
+    padding-top: 150px;
+}
+.btn-login{
+    margin-top: 15px;
+    background: #75CFB8 ;  
+    border: none ; 
+    color:white;
+    &:hover{
+        color:#437569
+    }
+}
+
+
+.img{
+    margin-left: 110px ;
+    margin-top: 20px;
+}
+.frmLogin{
+    width: 70% 	;
+    margin: 0 auto;
+    margin-top: 230px ;
+}
+
+.crear-cuenta{
+    text-decoration: none;
+    color: #536964;
+   
+    &:hover{
+        color:#75CFB8
+    }
+}
+
+.alerta-error{
+    color:red
+}
+

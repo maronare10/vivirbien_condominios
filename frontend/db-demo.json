@@ -1,0 +1,222 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "condominio": "Santa Elvira",
+      "role": "admin",
+      "name": "Administrador SE",
+      "email": "admin@gmail.com",
+      "password": "123456",
+      "created_at": "2021-09-22",
+      "updated_at": "2021-09-22"
+    },
+    {
+      "id": 2,
+      "condominio": "Santa Elvira",
+      "role": "propietario",
+      "name": "Propietario 101-D",
+      "email": "101d@gmail.com",
+      "password": "123456",
+      "created_at": "2021-09-22",
+      "updated_at": "2021-09-22"
+    },
+    {
+      "id": 3,
+      "condominio": "Santa Elvira",
+      "role": "propietario",
+      "name": "Propietario 201-D",
+      "email": "201d@gmail.com",
+      "password": "123456",
+      "created_at": "2021-09-22",
+      "updated_at": "2021-09-22"
+    },
+    {
+      "id": 4,
+      "condominio": "Santa Elvira",
+      "role": "propietario",
+      "name": "Propietario 101-C",
+      "email": "101c@gmail.com",
+      "password": "123456",
+      "created_at": "2021-09-22",
+      "updated_at": "2021-09-22"
+    },
+    {
+      "id": 5,
+      "condominio": "Santa Elvira",
+      "role": "propietario",
+      "name": "Propietario 201-C",
+      "email": "201c@gmail.com",
+      "password": "123456",
+      "created_at": "2021-09-22",
+      "updated_at": "2021-09-22"
+    },
+    {
+      "id": 6,
+      "condominio": "Santa Elvira",
+      "role": "propietario",
+      "name": "Propietario 301-D",
+      "email": "301d@gmail.com",
+      "password": "123456",
+      "created_at": "2021-09-24",
+      "updated_at": "2021-09-24"
+    },
+    {
+      "name": "Administrador JDLT",
+      "email": "adminJdlt@gmail.com",
+      "password": "adminjdlt",
+      "condominio": "Juan de la Torre",
+      "role": "admin",
+      "created_at": "2021-09-25",
+      "updated_at": "2021-09-25",
+      "id": 7
+    },
+    {
+      "name": "Administrador LP",
+      "email": "adminlp@gmail.com",
+      "password": "adminlp",
+      "condominio": "Los Portales",
+      "role": "admin",
+      "created_at": "2021-8-25",
+      "updated_at": "2021-8-25",
+      "id": 8
+    },
+    {
+      "name": "Cristhian Jesus Tambraico",
+      "email": "crisjesus@gmail.com",
+      "password": "crisjesus",
+      "role": "propietario",
+      "condominio": "Los Portales",
+      "created_at": "2021-8-25",
+      "updated_at": "2021-8-25",
+      "id": 9
+    },
+    {
+      "name": "Pedro Quintanilla",
+      "email": "pedroq@gmail.com",
+      "password": "pedroq",
+      "condominio": "Los Portales",
+      "role": "propietario",
+      "created_at": "2021-8-25",
+      "updated_at": "2021-8-25",
+      "id": 10
+    },
+    {
+      "name": "Roberto Sanchez",
+      "email": "roberts@gmail.com",
+      "password": "roberts",
+      "role": "propietario",
+      "condominio": "Juan de la Torre",
+      "created_at": "2021-8-25",
+      "updated_at": "2021-8-25",
+      "id": 11
+    },
+    {
+      "name": "Guillermo Contreras",
+      "email": "guillerco@gmail.com",
+      "password": "guillerc",
+      "condominio": "Juan de la Torre",
+      "role": "propietario",
+      "created_at": "2021-8-25",
+      "updated_at": "2021-8-25",
+      "id": 12
+    }
+  ],
+  "buildings": [
+    {
+      "id": 1,
+      "name": "Duraznos",
+      "floors": 2,
+      "flats": 2,
+      "created_at": "2021-09-17",
+      "updated_at": "2021-09-17"
+    },
+    {
+      "id": 2,
+      "name": "Cedros",
+      "floors": 2,
+      "flats": 2,
+      "created_at": "2021-09-17",
+      "updated_at": "2021-09-17"
+    }
+  ],
+  "flats": [
+    {
+      "id": 1,
+      "floor": 1,
+      "number": "101",
+      "created_at": "2021-09-22",
+      "updated_at": "2021-09-22",
+      "buildingId": 1,
+      "userId": 2
+    },
+    {
+      "id": 2,
+      "floor": 1,
+      "number": "201",
+      "created_at": "2021-09-22",
+      "updated_at": "2021-09-22",
+      "buildingId": 1,
+      "userId": 3
+    },
+    {
+      "id": 3,
+      "floor": 2,
+      "number": "101",
+      "created_at": "2021-09-22",
+      "updated_at": "2021-09-22",
+      "buildingId": 2,
+      "userId": 4
+    },
+    {
+      "id": 4,
+      "floor": 2,
+      "number": "201",
+      "created_at": "2021-09-22",
+      "updated_at": "2021-09-22",
+      "buildingId": 2,
+      "userId": 5
+    }
+  ],
+  "payments": [
+    {
+      "flatId": 1,
+      "dueDate": "2021-09-30",
+      "amountToPay": 125,
+      "amountPaid": 0,
+      "operationNumber": "",
+      "created_at": "2021-8-25",
+      "updated_at": "2021-8-25",
+      "id": 1
+    },
+    {
+      "flatId": 2,
+      "dueDate": "2021-09-30",
+      "amountToPay": 125,
+      "amountPaid": 0,
+      "operationNumber": "",
+      "created_at": "2021-8-25",
+      "updated_at": "2021-8-25",
+      "id": 2
+    },
+    {
+      "flatId": 3,
+      "dueDate": "2021-09-30",
+      "amountToPay": 125,
+      "amountPaid": 0,
+      "operationNumber": "",
+      "created_at": "2021-8-25",
+      "updated_at": "2021-8-25",
+      "id": 3
+    },
+    {
+      "flatId": 4,
+      "dueDate": "2021-09-30",
+      "amountToPay": 125,
+      "amountPaid": 125,
+      "operationNumber": "123456",
+      "created_at": "2021-8-25",
+      "updated_at": "2021-8-25",
+      "id": 4
+    }
+  ]
+}

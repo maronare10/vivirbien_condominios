@@ -1,0 +1,105 @@
+:root {
+    --bg-condominio: #75CFB8;
+  }
+  
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;700;800&display=swap');
+  
+  body {
+    font-family: 'Nunito', sans-serif;
+  }
+  
+  .MainContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100vh;
+    /* height: -webkit-fill-available; */
+    max-height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  
+  .bg-condominio {
+    background: var(--bg-condominio);
+    color: white;
+  }
+  
+  .MainSidebar {
+    width: 237px;
+  }
+  
+  .MainSidebar h1 {
+    font-size: 28px;
+    font-weight: 800;
+    text-align: center;
+  }
+  
+  .nav-pills .nav-link {
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+    border-radius: 0;
+    display: flex;
+    align-items: start;
+    gap: 5px;
+  }
+  
+  .nav-pills .ActiveItem {
+    background: #7C958E;
+  }
+  
+  .MainSeccion__navbar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .MainSeccion__userbuttons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .MainSeccion__content {
+    overflow-y: auto;
+    text-align: center;
+  }
+  
+  .MainSeccion__title {
+    font-size: 35px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  
+  .MainSeccion__message {
+    width: 80%;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: #F8F8F8;
+    border: #F2F2E3;
+    color: #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+  
+  .MainSeccion__info {
+    display: flex;
+    justify-content: center;
+    gap: 44px;
+    margin: 30px;
+  }
+  
+  .MainSeccion__info__item {
+    width: 180px;
+    height: 120px;
+    background: var(--bg-condominio);
+    color: #FFFFFF;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    font-style: normal;
+    gap: 10px;
+  }
