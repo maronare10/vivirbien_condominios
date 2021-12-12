@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "./loginStyles.scss";
 import building from "../../../asset/img/login-building.svg";
 import { useHistory } from "react-router-dom";
-import useFetch from "../../../server/useFecth";
+import Axios from 'axios';
 
 function Login() {
   const history = useHistory();
-  const { data: users } = useFetch("http://localhost:8000/users");
+  const url = "http://localhost:8000/api/token/"
 
   const [datos, setDatos] = useState({
     email: "",
@@ -14,8 +14,6 @@ function Login() {
   });
 
   const [error, setError] = useState(false);
-  //const handleClick = () => history.push('/home');
-  
 
   const actualizarState = (e) => {
     setDatos({
@@ -24,21 +22,34 @@ function Login() {
     });
   };
 
-  const {email,pass}=datos;
-  
+  const { email, pass } = datos;
+
+  const getInfoToken = (token) => {
+    let payload = token.split('.')[1];
+    let payloadDecoded = atob(payload);
+    let payloadJSON = JSON.parse(payloadDecoded);
+    return payloadJSON;
+  }
+
   const autenticacion = (e) => {
     e.preventDefault()
-    const info=users.find(user=>user.email===email && user.password===pass)
-    
-    if(info && info!=={}){
-        localStorage.setItem('condominio', info.condominio);
-        localStorage.setItem('name',info.name)
+
+    Axios.post(url, {
+      username: email,
+      password: pass,
+    })
+      .then(res => {
+        const data = res.data
+        const accessToken = data.access
+        const userInfo = getInfoToken(accessToken)
+        localStorage.setItem('condominio', userInfo.condominio_nombre);
+        localStorage.setItem('name', userInfo.usuario_nombre);
         return history.push("/Home")
-        
-    }else{
-      setError(true)
-      console.log("error")
-    }
+      })
+      .catch(err => {
+        setError(true)
+        console.log("error")
+      })
   }
 
   return (
@@ -54,7 +65,7 @@ function Login() {
         <div className="col align-items-center">
           <form className="frmLogin" onSubmit={autenticacion}>
             <h2 className="fw-bold text-center  ">BIENVENIDOS</h2>
-            {error?<p className="alerta-error">Rellenar todos los campos</p>:null}
+            {error ? <p className="alerta-error">Rellenar todos los campos</p> : null}
             <div class="mb-3">
               <input
                 type="text"
