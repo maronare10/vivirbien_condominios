@@ -1,107 +1,5 @@
 [
     {
-        "model": "auth.user",
-        "pk": 1,
-        "fields": {
-            "password": "pbkdf2_sha256$260000$4fisD0nuPfx5Ff17zkjjan$ctLpfYpK5UEhLivi9I7iMAQfJzNHBatPoBrml9F3Nj8=",
-            "last_login": "2021-12-04T14:03:40.352Z",
-            "is_superuser": true,
-            "username": "admin",
-            "first_name": "",
-            "last_name": "",
-            "email": "admin@vivirbien.com",
-            "is_staff": true,
-            "is_active": true,
-            "date_joined": "2021-12-04T14:03:23.472Z",
-            "groups": [],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "auth.user",
-        "pk": 2,
-        "fields": {
-            "password": "pbkdf2_sha256$260000$HYIrMpIi9fofcgcKTHEPch$c2MmjpC1ZQzGPrOGyACay5ftkiCce9FkfUO9LWCJYgM=",
-            "last_login": null,
-            "is_superuser": false,
-            "username": "mnavarro@santaelvira.com",
-            "first_name": "Mariana",
-            "last_name": "Navarro",
-            "email": "mnavarro@santaelvira.com",
-            "is_staff": false,
-            "is_active": true,
-            "date_joined": "2021-12-04T14:04:06Z",
-            "groups": [
-                1,
-                2,
-                3
-            ],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "auth.user",
-        "pk": 3,
-        "fields": {
-            "password": "pbkdf2_sha256$260000$wSogTP6mFca93yQ8QyB8Yf$wPFtc/IwZ+mTtR5/1ocS+jqT89yoFnW6152+Y5+PcLI=",
-            "last_login": null,
-            "is_superuser": false,
-            "username": "samy@santaelvira.com",
-            "first_name": "Samy",
-            "last_name": "",
-            "email": "samy@santaelvira.com",
-            "is_staff": false,
-            "is_active": true,
-            "date_joined": "2021-12-04T14:06:32Z",
-            "groups": [
-                2
-            ],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "auth.user",
-        "pk": 4,
-        "fields": {
-            "password": "pbkdf2_sha256$260000$B3d8jEhaSqCWyiGqiJto43$qYKG+rXAoZCamzg/ktEnd7NoqpJR799hBr+KNiPeanc=",
-            "last_login": null,
-            "is_superuser": false,
-            "username": "mateo@colibri.com",
-            "first_name": "Mateo",
-            "last_name": "",
-            "email": "mateo@colibri.com",
-            "is_staff": false,
-            "is_active": true,
-            "date_joined": "2021-12-04T14:13:01Z",
-            "groups": [
-                1,
-                2,
-                3
-            ],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "auth.user",
-        "pk": 5,
-        "fields": {
-            "password": "pbkdf2_sha256$260000$GAtRMHQLWlYrsSxy0f0hro$9OQ4rpu/NaPIXuSR3Jcmq+/t7o8PZm0FwGVyliZSlWE=",
-            "last_login": null,
-            "is_superuser": false,
-            "username": "leo@colibri.com",
-            "first_name": "Leo",
-            "last_name": "",
-            "email": "leo@colibri.com",
-            "is_staff": false,
-            "is_active": true,
-            "date_joined": "2021-12-04T14:40:43Z",
-            "groups": [
-                2
-            ],
-            "user_permissions": []
-        }
-    },
-    {
         "model": "auth.group",
         "pk": 1,
         "fields": {
@@ -118,27 +16,689 @@
         }
     },
     {
-        "model": "auth.group",
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$E013UAdiwlbpZtNbyXOmQX$bQvSfjOYYUGRcIzEFk4c09cN3pure0KRTYZ5D4oRVxI=",
+            "last_login": "2021-12-12T05:36:53.742Z",
+            "is_superuser": true,
+            "username": "admin@vivirbien.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "admin@vivirbien.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:17.550Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$0KOf8ObbjyiVbDZzxvMURp$J8uFv+3CYnafHYp7bWNI5MTz/qG/R3MCEWDrUOQl/yg=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "admin@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "admin@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:17.816Z",
+            "groups": [
+                1
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
         "pk": 3,
         "fields": {
-            "name": "junta de propietarios",
-            "permissions": []
+            "password": "pbkdf2_sha256$260000$nGGS0Hdkr2KyHmQ1dCFU8S$yJDDK4If+jmgnHpEeaGQneGS9UHgPBrLULOdbiTJYlg=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "samy1@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "samy1@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:18.681Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$KXjwwimDQVPwRiX3vRTfyv$WR/ROrimjxJr/ixkcul8FA5MN/jbmrxuXHuLGb7ISns=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "leo1@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "leo1@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:19.271Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$XaWps7bu14X6YCgjjXAYY0$e4njmI/AG0LoVU5pgqxFnH6XAynCpIqhKrD+q4V1HJ4=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "mate1@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "mate1@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:19.971Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 6,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$UXFcIogtruk1157FGgUMdd$sdwUBEcQpoO0p0uxqU/5MC6ijuicSwbsAWlX1qVXD9U=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "vic1@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "vic1@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:20.626Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 7,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$EftOkWPBOzoetRZHLUfWLQ$MzPQRhYYDcGxjMsCSifnoFG7JpGhBJuCExIdIhG6A3s=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "samy2@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "samy2@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:21.193Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 8,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$fwoQgVIDk9Jk7UZEJ2gTJE$YfruacCbKY8tPBh3XnDKRYxx68ozlT62wo9mf6hOzHg=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "leo2@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "leo2@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:21.904Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 9,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$2DKrl3zIwFzCS0HP7ih6iO$QiBTSQ5iHZ6R+oMlPTCS9uPIwGfdggAdq5OApbhqYqE=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "mate2@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "mate2@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:22.593Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 10,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$ODrjvkRvQggx4VDi0mZjqr$GvSRsnnetmhREdxelz+D0ILo9p+tCm5FGd3sBhFKZqQ=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "vic2@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "vic2@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:23.282Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 11,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$rXo7rdVsRlYJVZaafRUeB8$9+3vhM4MBIIKrqnohleN4OcVcwZoBp6AaIt6PywGo1w=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "samy3@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "samy3@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:23.915Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 12,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$JvVy9szzhhF6rF3sKOSj2z$hE2O4o1S6kiKWqNFMV1ZQgk5aQjA2X13JQK3hxQWRzQ=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "leo3@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "leo3@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:24.627Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 13,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$OMUjT6qjlp9gaMiznisOEU$FmFQvO3KGeylGXRCG7th+kW3me0CXEzSvB98C8AYAIQ=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "mate3@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "mate3@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:25.460Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 14,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$s05ngyJvhEVxR9Y2RWTQHP$KJIEAr1aoQS+CO8cDi4GIXpipxJKUVv9hCaFbdg3myE=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "vic3@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "vic3@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:26.148Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 15,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$E8a7E6PC4tdxPFDpwsce3e$mAl9Y0bYVukOmzLZFV4taU2Drb+p213QtlQzEPSpHa0=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "samy4@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "samy4@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:26.750Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 16,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$VCjlHDHg6vJa9BLNw4j9Vu$DWU0sKEsRiqShPK2cXNoScxQZgHrYEy7947ia9uOYyg=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "leo4@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "leo4@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:27.382Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 17,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$hn9grNBRXDJgdBLVkPr4gf$UnWend5Io4fiA71XnQCodPqN7LQbaRrjo1Pi5UrnRH4=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "mate4@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "mate4@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:27.959Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 18,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$CUU2R7E71aMQkCljWE9OI0$oBlyiyrfPfhTjWxQwKV1c6yLWyQ6obHMUWcT1S7PUow=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "vic4@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "vic4@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:28.537Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 19,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$YWiDpv7Goy04bLNeY63iQp$LVWRce3mb3urUUcFD3QNF+7spuV8i66YqYMnuqR6Obw=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "samy5@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "samy5@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:29.127Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 20,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$ZVI6oexhOt1t0cfsu1tuaV$6GbTvTojmYMPTuG5BhU+Gn1UnDROtn1L67jb0MCQrMI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "leo5@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "leo5@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:29.804Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 21,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$RXjWrLMIfFsRpf8nnj6C5S$d6cXOfxhN4SX1ZVRsLU1UvhR2IlEGanVwYPEc8q0d4Y=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "mate5@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "mate5@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:30.905Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 22,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$Ip6RD3LOeNX9BidPM46elm$dUebnowmtbedkdr6k0teyilI9FyjgDFMD4Zo6NU55gQ=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "vic5@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "vic5@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:31.505Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 23,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$wMv3T2IIZdVysR7ffsBbRl$3g40pcAlYeA1U5sWst+Qcgwy6We5bIucfZA51dRZ9bM=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "samy6@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "samy6@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:32.060Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 24,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$8QTaLeASFxk4GI8HNBZySY$7xxbTXjOGisqET67Ze+myjHrJSEKuIrwk7Wgrr0g118=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "leo6@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "leo6@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:32.637Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 25,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$H8JLWxmffntQ7TPsIKjX3Z$QRe5OjznJd3aepO8ussdjcMSifY5wtC0NCufjT398mA=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "mate6@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "mate6@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:33.260Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 26,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$nZUkulqzWyeI29SaXtU7CP$Rt3gUw97jyaPi/N7jDykyboy/oUdL8bE95/Z6Oe5g0A=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "vic6@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "vic6@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:33.894Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 27,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$5GxGYs7vjTZBbpRYKtrAeY$k+IzVRrFRvniSyTyoEjtERGwxmrXQgvjklDGI81AVsI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "samy7@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "samy7@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:34.572Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 28,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$46hmtHcmPnAFPNd5fGXEv8$KGiRBq7r9xeEIJTkL0Z2AzpEnxuV0Xztnd+VQ/gY48w=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "leo7@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "leo7@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:35.272Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 29,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$pqZlC5H2iYheUjaAZ5ITcK$c+ow1f1KrysUYpGvG0DzGewU0UkpmlOY+Es0B632hFQ=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "mate7@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "mate7@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:36.083Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 30,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$2IBwyy8kQjtQNjabEySmBU$mFLeFq737Jz18gUjc0eS7NwkmPgPUSH4oa5LVY4tYsk=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "vic7@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "vic7@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:36.771Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 31,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$xqAUySk093oqz0r5CyWOWQ$4LyBbKvV6Ztzteszd2M1R6cqhwJa2wshdctlctDE20A=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "samy8@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "samy8@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:37.461Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 32,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$Mv4EZURBiWupQtkEdfCtr0$nnZiit9gEGR2Wkl+hMF8u9JQmjp254oxMtxN91gtUv0=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "leo8@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "leo8@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:38.150Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 33,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$0ZeZR4UL8ZuIwNOy4AaK7d$8Z1NCFkSVg3n0GF2UldQCkeQoEQG1dnvEYkwtD7K/Z4=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "mate8@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "mate8@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:38.772Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 34,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$xJi1SCnDcb2wgHGS9NPTmq$Doz8eu2NHnmtuNXCpRi25vxAqPRdlOhATahusbOU/W0=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "vic8@santaelvira.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "vic8@santaelvira.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-12-12T05:36:39.483Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
         }
     },
     {
         "model": "api.condominio",
         "pk": 1,
         "fields": {
-            "nombre": "Residencial Santa Elvira",
+            "nombre": "Santa Elvira",
             "propietario": 2
-        }
-    },
-    {
-        "model": "api.condominio",
-        "pk": 2,
-        "fields": {
-            "nombre": "Colibri",
-            "propietario": 4
         }
     },
     {
@@ -155,16 +715,6 @@
         "model": "api.edificio",
         "pk": 2,
         "fields": {
-            "nombre": "Tokio",
-            "departamentos": 96,
-            "pisos": 8,
-            "condominio": 2
-        }
-    },
-    {
-        "model": "api.edificio",
-        "pk": 3,
-        "fields": {
             "nombre": "Cedros",
             "departamentos": 80,
             "pisos": 8,
@@ -179,7 +729,7 @@
             "piso": 1,
             "edificio": 1,
             "propietarios": [
-                2
+                3
             ]
         }
     },
@@ -187,21 +737,9 @@
         "model": "api.departamento",
         "pk": 2,
         "fields": {
-            "numero": 201,
-            "piso": 2,
-            "edificio": 1,
-            "propietarios": [
-                3
-            ]
-        }
-    },
-    {
-        "model": "api.departamento",
-        "pk": 3,
-        "fields": {
-            "numero": 101,
+            "numero": 102,
             "piso": 1,
-            "edificio": 2,
+            "edificio": 1,
             "propietarios": [
                 4
             ]
@@ -209,13 +747,25 @@
     },
     {
         "model": "api.departamento",
+        "pk": 3,
+        "fields": {
+            "numero": 103,
+            "piso": 1,
+            "edificio": 1,
+            "propietarios": [
+                5
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
         "pk": 4,
         "fields": {
-            "numero": 101,
+            "numero": 104,
             "piso": 1,
-            "edificio": 3,
+            "edificio": 1,
             "propietarios": [
-                3
+                6
             ]
         }
     },
@@ -225,9 +775,333 @@
         "fields": {
             "numero": 201,
             "piso": 2,
-            "edificio": 2,
+            "edificio": 1,
             "propietarios": [
-                5
+                7
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 6,
+        "fields": {
+            "numero": 202,
+            "piso": 2,
+            "edificio": 1,
+            "propietarios": [
+                8
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 7,
+        "fields": {
+            "numero": 203,
+            "piso": 2,
+            "edificio": 1,
+            "propietarios": [
+                9
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 8,
+        "fields": {
+            "numero": 204,
+            "piso": 2,
+            "edificio": 1,
+            "propietarios": [
+                10
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 9,
+        "fields": {
+            "numero": 301,
+            "piso": 3,
+            "edificio": 1,
+            "propietarios": [
+                11
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 10,
+        "fields": {
+            "numero": 302,
+            "piso": 3,
+            "edificio": 1,
+            "propietarios": [
+                12
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 11,
+        "fields": {
+            "numero": 303,
+            "piso": 3,
+            "edificio": 1,
+            "propietarios": [
+                13
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 12,
+        "fields": {
+            "numero": 304,
+            "piso": 3,
+            "edificio": 1,
+            "propietarios": [
+                14
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 13,
+        "fields": {
+            "numero": 401,
+            "piso": 4,
+            "edificio": 1,
+            "propietarios": [
+                15
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 14,
+        "fields": {
+            "numero": 402,
+            "piso": 4,
+            "edificio": 1,
+            "propietarios": [
+                16
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 15,
+        "fields": {
+            "numero": 403,
+            "piso": 4,
+            "edificio": 1,
+            "propietarios": [
+                17
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 16,
+        "fields": {
+            "numero": 404,
+            "piso": 4,
+            "edificio": 1,
+            "propietarios": [
+                18
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 17,
+        "fields": {
+            "numero": 501,
+            "piso": 5,
+            "edificio": 1,
+            "propietarios": [
+                19
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 18,
+        "fields": {
+            "numero": 502,
+            "piso": 5,
+            "edificio": 1,
+            "propietarios": [
+                20
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 19,
+        "fields": {
+            "numero": 503,
+            "piso": 5,
+            "edificio": 1,
+            "propietarios": [
+                21
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 20,
+        "fields": {
+            "numero": 504,
+            "piso": 5,
+            "edificio": 1,
+            "propietarios": [
+                22
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 21,
+        "fields": {
+            "numero": 601,
+            "piso": 6,
+            "edificio": 1,
+            "propietarios": [
+                23
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 22,
+        "fields": {
+            "numero": 602,
+            "piso": 6,
+            "edificio": 1,
+            "propietarios": [
+                24
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 23,
+        "fields": {
+            "numero": 603,
+            "piso": 6,
+            "edificio": 1,
+            "propietarios": [
+                25
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 24,
+        "fields": {
+            "numero": 604,
+            "piso": 6,
+            "edificio": 1,
+            "propietarios": [
+                26
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 25,
+        "fields": {
+            "numero": 701,
+            "piso": 7,
+            "edificio": 1,
+            "propietarios": [
+                27
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 26,
+        "fields": {
+            "numero": 702,
+            "piso": 7,
+            "edificio": 1,
+            "propietarios": [
+                28
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 27,
+        "fields": {
+            "numero": 703,
+            "piso": 7,
+            "edificio": 1,
+            "propietarios": [
+                29
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 28,
+        "fields": {
+            "numero": 704,
+            "piso": 7,
+            "edificio": 1,
+            "propietarios": [
+                30
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 29,
+        "fields": {
+            "numero": 801,
+            "piso": 8,
+            "edificio": 1,
+            "propietarios": [
+                31
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 30,
+        "fields": {
+            "numero": 802,
+            "piso": 8,
+            "edificio": 1,
+            "propietarios": [
+                32
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 31,
+        "fields": {
+            "numero": 803,
+            "piso": 8,
+            "edificio": 1,
+            "propietarios": [
+                33
+            ]
+        }
+    },
+    {
+        "model": "api.departamento",
+        "pk": 32,
+        "fields": {
+            "numero": 804,
+            "piso": 8,
+            "edificio": 1,
+            "propietarios": [
+                34
             ]
         }
     },
@@ -237,30 +1111,6 @@
         "fields": {
             "nombre": "mantenimiento",
             "condominio": 1
-        }
-    },
-    {
-        "model": "api.servicio",
-        "pk": 2,
-        "fields": {
-            "nombre": "cuota extraordinaria",
-            "condominio": 1
-        }
-    },
-    {
-        "model": "api.servicio",
-        "pk": 3,
-        "fields": {
-            "nombre": "alquiler de areas comunes",
-            "condominio": 1
-        }
-    },
-    {
-        "model": "api.servicio",
-        "pk": 4,
-        "fields": {
-            "nombre": "mantenimiento",
-            "condominio": 2
         }
     }
 ]
