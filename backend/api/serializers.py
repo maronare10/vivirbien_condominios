@@ -39,14 +39,20 @@ class RegistrarCondominioSerializer(serializers.Serializer):
         data.pop('password_confirmation')
         condominio_nombre = data.pop('condominio_nombre')
         condominio_propietario = User.objects.create_user(**data)
+
         if (condominio_propietario):
-            Condominio.objects.create(
-                nombre=condominio_nombre, propietario=condominio_propietario)
+            condominio = Condominio.objects.create(
+                nombre=condominio_nombre,
+                propietario=condominio_propietario
+            )
 
-        grupo_admin = Group.objects.get(name=GRUPO_ADMINISTRADOR)
-        condominio_propietario.groups.add(grupo_admin)
+            Servicio.objects.create(
+                nombre=SERVICIO_POR_DEFECTO,
+                condominio=condominio
+            )
 
-        Servicio.objects.create(name=SERVICIO_POR_DEFECTO)
+            grupo_admin = Group.objects.get(name=GRUPO_ADMINISTRADOR)
+            condominio_propietario.groups.add(grupo_admin)
 
         return condominio_propietario
 
