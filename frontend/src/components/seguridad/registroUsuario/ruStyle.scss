@@ -32,7 +32,7 @@ $color-footer: rgba(249,249,249,255)
     top: 128px;
 
     background: #FFFFFF;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.20);
     border-radius: 6px;
     margin: 1em;
     border: none;
@@ -62,7 +62,10 @@ $color-footer: rgba(249,249,249,255)
 
 }
 
-
+.error-message {
+    padding-left: 50px;
+    color: #ff3e3e;
+}
 
 
 

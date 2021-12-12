@@ -9,53 +9,37 @@ import { useState } from 'react';
 function RegistroUsuario(props) {
   const history = useHistory()
   
-  const url="http://localhost:8000/users"
+  const url="http://localhost:8000/api/registrar_condominio"
+
   const [data, setData] = useState({
     condominio:"",
     role:"admin",
     name: "",
     email:"",
     password:""
-    // condominio:"",
-    // role:"",
-    // name: "",
-    // email:"",
-    // password:""
-    
-    
-    
   })
-
-  function currentDate() {
-    const now = new Date()
-    const day = now.getDate()
-    const month = now.getMonth()
-    const year = now.getFullYear()
-    return `${year}-${month}-${day}`
-  }
+  const [errors, setErrors] = useState(null)
 
   function submit(e){
     e.preventDefault();
+
     Axios.post(url,{
-        name: data.name,
+        first_name: data.name,
+        last_name: data.name,
+        username: data.email,
         email: data.email,
         password: data.password,
-        condominio: data.condominio,
-        role: data.role,
-        created_at: currentDate(),
-        updated_at: currentDate()
-        // condominio:"",
-        // role:"",
-        // name: "",
-        // email:"",
-        // password:""
-       
+        password_confirmation: data.password,
+        condominio_nombre: data.condominio,
     })
-        .then(res=>{
-            console.log(res.data)
-            history.push('/')
-        })
-
+    .then(res=>{
+        console.log(res.data)
+        history.push('/')
+    })
+    .catch(err => {
+      console.log(err.response.data)
+      setErrors(err.response.data)
+    })
   }
 
   function handle(e){
@@ -81,6 +65,7 @@ function RegistroUsuario(props) {
             className ="controls"
           
           />
+          { errors && errors.condominio_nombre && <div className="error-message">{errors.condominio_nombre}</div> }
         </div>
         <div>
           <input 
@@ -91,6 +76,7 @@ function RegistroUsuario(props) {
             placeholder="Nombre completo"
             className="controls"
           />
+          { errors && errors.first_name && <div className="error-message">{errors.first_name}</div> }
         </div>
         
         <div>
@@ -103,6 +89,7 @@ function RegistroUsuario(props) {
             className ="controls"
           
           />
+          { errors && errors.email && <div className="error-message">{errors.email}</div> }
         </div>
 
         <div>
@@ -115,6 +102,7 @@ function RegistroUsuario(props) {
             className ="controls"
           
           />
+          { errors && errors.password && <div className="error-message">{errors.password}</div> }
         </div>
         <div className="text-center">
         <button  className="controls-btn">
