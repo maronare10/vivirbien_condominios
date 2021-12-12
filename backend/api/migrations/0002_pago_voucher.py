@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='pago',
             name='voucher',
-            field=cloudinary.models.CloudinaryField(default='', max_length=255, verbose_name='image'),
+            field=cloudinary.models.CloudinaryField(blank=True, null=True, max_length=255, verbose_name='image'),
         ),
     ]

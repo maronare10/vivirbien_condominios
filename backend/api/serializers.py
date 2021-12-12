@@ -35,6 +35,7 @@ class RegistrarCondominioSerializer(serializers.Serializer):
 
     def create(self, data):
         GRUPO_ADMINISTRADOR = 'administrador'
+        SERVICIO_POR_DEFECTO = 'mantenimiento'
         data.pop('password_confirmation')
         condominio_nombre = data.pop('condominio_nombre')
         condominio_propietario = User.objects.create_user(**data)
@@ -44,6 +45,8 @@ class RegistrarCondominioSerializer(serializers.Serializer):
 
         grupo_admin = Group.objects.get(name=GRUPO_ADMINISTRADOR)
         condominio_propietario.groups.add(grupo_admin)
+
+        Servicio.objects.create(name=SERVICIO_POR_DEFECTO)
 
         return condominio_propietario
 
@@ -87,7 +90,8 @@ class PagoSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        representation['voucher'] = instance.voucher.url
+        if (instance.voucher):
+            representation['voucher'] = instance.voucher.url
         return representation
 
 

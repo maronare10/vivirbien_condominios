@@ -48,7 +48,7 @@ class Pago (models.Model):
     vencimiento = models.DateField()
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now_add=True)
-    voucher = CloudinaryField('image', default='')
+    voucher = CloudinaryField('image', blank=True, null=True)
     
     departamento = models.ForeignKey(Departamento, related_name='pago_departamento', on_delete=models.CASCADE)
     pagado_por = models.ForeignKey(User, related_name='pago_pagado_por', on_delete=models.CASCADE, blank=True, null=True)
