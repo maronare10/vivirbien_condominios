@@ -4,11 +4,15 @@ from .models import Condominio, Edificio, Departamento, Servicio, Pago
 
 
 class DepartamentoAdmin(admin.ModelAdmin):
-    list_display = ('numero', 'piso', 'edificio', 'get_condominio')
+    list_display = ('numero', 'piso', 'edificio', 'get_condominio', 'get_propietarios')
 
     @admin.display(description='Condominio')
     def get_condominio(self, obj):
         return obj.edificio.condominio.nombre
+    
+    @admin.display(description='Propietarios')
+    def get_propietarios(self, obj):
+        return "\n".join([p.username for p in obj.propietarios.all()])
 
 class PagoAdmin(admin.ModelAdmin):
     list_display = ('departamento','servicio','pagado_por', 'monto_a_pagar', 'monto_pagado', 'vencimiento', 'fecha_creacion', 'fecha_actualizacion')
