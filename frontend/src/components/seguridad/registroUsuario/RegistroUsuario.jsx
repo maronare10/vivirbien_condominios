@@ -23,15 +23,17 @@ function RegistroUsuario(props) {
   function submit(e){
     e.preventDefault();
 
-    Axios.post(url,{
-        first_name: data.name,
-        last_name: data.name,
-        username: data.email,
-        email: data.email,
-        password: data.password,
-        password_confirmation: data.password,
-        condominio_nombre: data.condominio,
-    })
+    const data = {
+      first_name: data.name,
+      last_name: data.name,
+      username: data.email,
+      email: data.email,
+      password: data.password,
+      password_confirmation: data.password,
+      condominio_nombre: data.condominio,
+  }
+
+    Axios.post(url, data)
     .then(res=>{
         console.log(res.data)
         history.push('/')
@@ -46,8 +48,6 @@ function RegistroUsuario(props) {
     const newdata={...data}
     newdata[e.target.id] = e.target.value
     setData(newdata)
-    console.log(newdata)
-
   }
 
   return (
