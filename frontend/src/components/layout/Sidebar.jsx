@@ -31,25 +31,25 @@ const Sidebar = () => {
         <li className="nav-item">
           <Link className={`nav-link ${menuSelected === 'home' && 'ActiveItem'}`} to="/Home" onClick={() => activeMenuSelected('home')}>
             <img src={iconHome} alt="icon-home"></img>
-            <span>Home</span>
+            <span>Inicio</span>
           </Link>
         </li>
         <li className="nav-item">
           <Link className={`nav-link ${menuSelected === 'buildings' && 'ActiveItem'}`} to="/buildings" onClick={() => activeMenuSelected('buildings')}>
             <img src={iconBuilding} alt="icon-home"></img>
-            <span>Buildings</span>
+            <span>Edificios</span>
           </Link>
         </li>
         <li className="nav-item">
           <Link className={`nav-link ${menuSelected === 'flats' && 'ActiveItem'}`} to="/flats" onClick={() => activeMenuSelected('flats')}>
             <img src={iconFlats} alt="icon-home"></img>
-            <span>Flats</span>
+            <span>Departamentos</span>
           </Link>
         </li>
         <li className="nav-item">
           <Link  className={`nav-link ${menuSelected === 'users' && 'ActiveItem'}`} to="./Users" onClick={() => activeMenuSelected('users')}>
             <img src={iconUsers} alt="icon-home"></img>
-            <span>Users</span>
+            <span>Usuarios</span>
           </Link>
         </li>
         {/* <li className="nav-item">
@@ -61,7 +61,7 @@ const Sidebar = () => {
         <li className="nav-item">
           <Link  className={`nav-link ${menuSelected === 'payments' && 'ActiveItem'}`} to="/payments" onClick={() => activeMenuSelected('payments')}>
             <img src={iconFlats} alt="icon-home"></img>
-            <span>Payments</span>
+            <span>Pagos</span>
           </Link>
         </li>
         {/* <li className="nav-item">
@@ -77,7 +77,7 @@ const Sidebar = () => {
           <img src={iconConfig} alt="icon-home"></img>
         </Link>
         <div className="VersionName">
-          v0.1.0
+          v0.2.0
         </div>
       </div>
     </div>
