@@ -13,9 +13,9 @@ export function AppContextProvider({ children }) {
 
   useEffect(() => {
     
-    axios.get("//localhost:8000/buildings").then(response => setBuildings(response.data))
-    axios.get("//localhost:8000/users").then(response => setUsers(response.data))
-    axios.get("//localhost:8000/flats?_expand=building&_expand=user").then(response => setFlats(response.data))
+    // axios.get("//localhost:8000/buildings").then(response => setBuildings(response.data))
+    // axios.get("//localhost:8000/users").then(response => setUsers(response.data))
+    // axios.get("//localhost:8000/flats?_expand=building&_expand=user").then(response => setFlats(response.data))
 
   }, [toggleSidebar])
 
