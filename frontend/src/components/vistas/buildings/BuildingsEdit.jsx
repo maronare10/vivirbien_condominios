@@ -10,45 +10,68 @@ const BuildingsEdit = () => {
 
   const { id } = useParams()
 
-  const url = `http://localhost:8000/buildings/${id}`
+  const [condominios, setCondominios] = useState([])
 
-  const [name, setName] = useState("")
-  const [floors, setFloors] = useState(0)
-  const [flats, setFlats] = useState(0)
+  const [datos, setDatos] = useState({
+    nombre: "",
+    departamentos: 0,
+    pisos: 0,
+    condominio: 0
+  });
+
+  const [errors, setErrors] = useState(null)
+
+  const { nombre, departamentos, pisos, condominio } = datos;
+
+  const url_condominios = 'http://localhost:8000/api/condominios'
+  const url_edificio = `http://localhost:8000/api/edificios/${id}`
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    const headers = { 'Authorization': `Bearer ${token}` }
+    const config_condominios = { method: 'GET', url: url_condominios, headers }
+    const config_edificio = { method: 'GET', url: url_edificio, headers }
 
-    axios
-      .get(url)
-      .then(response => {
-        setName(response.data.name)
-        setFloors(response.data.floors)
-        setFlats(response.data.flats)
+    axios.request(config_condominios)
+      .then((response) => {
+        setCondominios(response.data.results)
       })
+      .catch((error) => {
+        console.log(error)
+      });
 
-  }, [url])
+    axios.request(config_edificio)
+      .then((response) => {
+        const { nombre, departamentos, pisos, condominio } = response.data
+        setDatos({ nombre, departamentos, pisos, condominio })
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  }, [])
 
-  function currentDate() {
-    const now = new Date()
-    const day = now.getDate()
-    const month = now.getMonth()
-    const year = now.getFullYear()
-    return `${year}-${month}-${day}`
-  }
+  const actualizarState = (e) => {
+    setDatos({
+      ...datos,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   function handleSubmit(e) {
     e.preventDefault()
 
     const data = {
-      name,
-      floors,
-      flats,
-      created_at: currentDate(),
-      updated_at: currentDate()
+      nombre,
+      departamentos,
+      pisos,
+      condominio,
     }
 
-    axios
-      .put(url, data)
+    const token = localStorage.getItem('token');
+    const headers = { 'Authorization': `Bearer ${token}` }
+    const config = { method: 'PUT', url: url_edificio, data, headers }
+
+    axios.request(config)
       .then((response) => {
         // La respuesta del server
         historial.push('/buildings')
@@ -58,39 +81,45 @@ const BuildingsEdit = () => {
       });
   }
 
-  function handleName(event) {
-    setName(event.target.value)
-  }
-
-  function handleFloors(event) {
-    setFloors(Number(event.target.value))
-  }
-
-  function handleFlats(event) {
-    setFlats(Number(event.target.value))
-  }
-
   return (
     <div className="MainSeccion__content p-5 text-start">
 
       <div className="BuildingsEdit">
 
         <form className="m-0" onSubmit={handleSubmit}>
-          <h2 className="mb-5">Edit a building</h2>
+          <h2 className="mb-5">Editar edificio</h2>
 
           <div className="mb-3">
-            <label className="form-label">Name Building</label>
-            <input type="text" className="form-control" value={name} onChange={handleName} />
+            <label className="form-label">Nombre</label>
+            <input type="text" className="form-control" name="nombre" value={nombre} onChange={actualizarState} />
+            { errors && errors.nombre && <div className="error-message">{errors.nombre}</div> }
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Floors</label>
-            <input type="text" className="form-control" value={floors} onChange={handleFloors} />
+            <label className="form-label">Departamentos</label>
+            <input type="text" className="form-control" name="departamentos" value={departamentos} onChange={actualizarState} />
+            { errors && errors.departamentos && <div className="error-message">{errors.departamentos}</div> }
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Flats</label>
-            <input type="text" className="form-control" value={flats} onChange={handleFlats} />
+            <label className="form-label">Pisos</label>
+            <input type="text" className="form-control" name="pisos" value={pisos} onChange={actualizarState} />
+            { errors && errors.pisos && <div className="error-message">{errors.pisos}</div> }
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Condominio</label>
+            <select className="form-select" name="condominio" value={condominio} onChange={actualizarState}>
+              <option value="0">Selecciona un condominio</option>
+              {condominios.map((condominio, index) =>
+                <option
+                value={condominio.id}
+                key={index}>
+                  {condominio.nombre}
+                </option>
+              )}
+            </select>
+            { errors && errors.condominio && <div className="error-message">Este campo es requerido</div> }
           </div>
 
           <div className="mb-3">
