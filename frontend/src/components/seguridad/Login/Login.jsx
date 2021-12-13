@@ -42,6 +42,7 @@ function Login() {
         const data = res.data
         const accessToken = data.access
         const userInfo = getInfoToken(accessToken)
+        localStorage.setItem('token', accessToken);
         localStorage.setItem('condominio', userInfo.condominio_nombre);
         localStorage.setItem('name', userInfo.usuario_nombre);
         return history.push("/Home")
