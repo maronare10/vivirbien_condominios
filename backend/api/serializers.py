@@ -62,11 +62,19 @@ class CondominioSerializer(serializers.ModelSerializer):
         model = Condominio
         fields = '__all__'
 
-
+        
 class EdificioSerializer(serializers.ModelSerializer):
+    condominio_extra = serializers.SerializerMethodField()
+
     class Meta:
         model = Edificio
         fields = '__all__'
+    
+    def get_condominio_extra(self, obj):
+        return {
+            "id": obj.condominio.id,
+            "nombre": obj.condominio.nombre,
+        }
 
 
 class DepartamentoSerializer(serializers.ModelSerializer):
