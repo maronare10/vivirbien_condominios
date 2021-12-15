@@ -1,70 +1,91 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { useHistory } from "react-router-dom";
 
-import useApp from "../../../server/useApp";
+// import useApp from "../../../server/useApp";
 
 import './FlatsAdd.scss'
 
 const FlatsAdd = () => {
   const historial = useHistory()
   
-  const { buildings, users } = useApp()
+  const [ edificiosData, setEdificiosData ] = useState([])
+  const [ propietariosData, setPropietariosData ] = useState([])
 
-  const [building, setBuilding] = useState(null)
-  const [user, setUser] = useState(null)
-  const [floor, setFloor] = useState(0)
-  const [number, setNumber] = useState(0)
+  const [datos, setDatos] = useState({
+    numero: 0,
+    piso: 0,
+    edificio: null,
+    propietarios: null
+  });
 
-  function currentDate() {
-    const now = new Date()
-    const day = now.getDate()
-    const month = now.getMonth()
-    const year = now.getFullYear()
-    return `${year}-${month}-${day}`
-  }
+  const [errors, setErrors] = useState(null)
 
-  function handleSubmit(e) {
-    e.preventDefault()
+  const { numero, piso, edificio, propietarios } = datos;
 
-    const url = "http://localhost:8000/flats"
+  useEffect(() => {
+    const url_edificios = 'http://localhost:8000/api/edificios'
+    const url_propietarios = 'http://localhost:8000/api/propietarios'
+    const token = localStorage.getItem('token');
+    const headers = { 'Authorization': `Bearer ${token}` }
+    const config_edificios = { method: 'GET', url: url_edificios, headers }
+    const config_propietarios = { method: 'GET', url: url_propietarios, headers }
 
-    const data = {
-      buildingId: building,
-      userId: user,
-      floor,
-      number,
-      created_at: currentDate(),
-      updated_at: currentDate()
-    }
-
-    axios
-      .post(url, data)
+    axios.request(config_edificios)
       .then((response) => {
-        // La respuesta del server
-        historial.push('/flats')
+        console.log(response.data.results)
+        setEdificiosData(response.data.results)
       })
       .catch((error) => {
         console.log(error)
       });
-  }
+    
+    axios.request(config_propietarios)
+      .then((response) => {
+        console.log(response.data.results)
+        setPropietariosData(response.data.results)
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  }, [])
 
-  function handleBuilding(event) {
-    setBuilding(Number(event.target.value))
-  }
+  function handleSubmit(e) {
+    e.preventDefault()
 
-  function handleUser(event) {
-    setUser(Number(event.target.value))
-  }
+    const url = "http://localhost:8000/api/departamentos"
 
-  function handleFloor(event) {
-    setFloor(Number(event.target.value))
-  }
+    console.log(datos)
 
-  function handleNumber(event) {
-    setNumber(Number(event.target.value))
+    const data = {
+      edificio: Number(edificio) ,
+      propietarios: [Number(propietarios)],
+      piso: Number(piso),
+      numero: Number(numero),
+    }
+
+    const token= localStorage.getItem('token');
+    const headers = {'Authorization': `Bearer ${token}`}
+    const config = { method: 'POST', url, data, headers }
+
+    axios.request(config)
+      .then((response) => {
+        // La respuesta del server
+        historial.push('/flats')
+      })
+      .catch((err) => {
+        console.log(err.response.data)
+        setErrors(err.response.data)
+      });
   }
+  
+  const actualizarState = (e) => {
+    setDatos({
+      ...datos,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   return (
     <div className="MainSeccion__content p-5 text-start">
@@ -75,35 +96,40 @@ const FlatsAdd = () => {
           <h2 className="mb-5">Create a flat</h2>
           
           <div className="mb-3">
-            <label className="form-label">Building</label>
-            <select className="form-select" onChange={handleBuilding}>
+            <label className="form-label">Edificio</label>
+            <select className="form-select" name="edificio" onChange={actualizarState}>
               <option value="0">Selecciona un edificio</option>
-              {buildings.map((building, index) => 
-                <option value={building.id} key={index}>{building.name}</option>
+              {edificiosData && edificiosData.map((edificio, index) => 
+                <option value={edificio.id} key={index}>{edificio.nombre}</option>
               )}
             </select>
-          </div>
-          
-          <div className="mb-3">
-            <label className="form-label">User</label>
-            <select className="form-select" onChange={handleUser}>
-              <option value="0">Selecciona un propietario</option>
-              {users.map((user, index) => 
-                <option value={user.id} key={index}>{user.name}</option>
-              )}
-            </select>
+            { errors && errors.edificio && <div className="error-message">{errors.edificio}</div> }
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Floor</label>
-            <input type="text" className="form-control" onChange={handleFloor} />
+            <label className="form-label">Propietarios</label>
+            <select className="form-select" name="propietarios" onChange={actualizarState}>
+              <option value="0">Selecciona un propietario</option>
+              {propietariosData && propietariosData.map((propietario, index) => 
+                <option value={propietario.id} key={index}>{propietario.username}</option>
+              )}
+            </select>
+            { errors && errors.propietario && <div className="error-message">{errors.propietario}</div> }
+          </div>
+          
+
+          <div className="mb-3">
+            <label className="form-label">Piso</label>
+            <input type="text" className="form-control" name="piso" onChange={actualizarState} />
+            { errors && errors.piso && <div className="error-message">{errors.piso}</div> }
           </div>
           
           <div className="mb-3">
-            <label className="form-label">Number</label>
-            <input type="text" className="form-control" onChange={handleNumber} />
+            <label className="form-label">Numero</label>
+            <input type="text" className="form-control" name="numero" onChange={actualizarState} />
+            { errors && errors.numero && <div className="error-message">{errors.numero}</div> }
           </div>
-          
+
           <div className="mb-3">
             <input type="submit" className="form-control btn btn-primary" />
           </div>
