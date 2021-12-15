@@ -72,15 +72,26 @@ class EdificioSerializer(serializers.ModelSerializer):
     
     def get_condominio_extra(self, obj):
         return {
-            "id": obj.condominio.id,
             "nombre": obj.condominio.nombre,
         }
 
 
 class DepartamentoSerializer(serializers.ModelSerializer):
+    edificio_extra = serializers.SerializerMethodField()
+    # propietarios_extra = serializers.SerializerMethodField()
+
     class Meta:
         model = Departamento
         fields = '__all__'
+
+    def get_edificio_extra(self, obj):
+        return {
+            "nombre": obj.edificio.nombre,
+        }
+
+    # def get_propietarios_extra(self, obj):
+    #     return obj.propietarios
+
 
 
 class ServicioSerializer(serializers.ModelSerializer):

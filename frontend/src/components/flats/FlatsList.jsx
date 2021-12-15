@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useState, useEffect} from 'react'
 import useFetch from '../../server/useFecth';
 import Pagination from '../layout/Pagination'
 import { useHistory, useLocation } from "react-router-dom";
@@ -8,34 +8,56 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-const FlatsList = ({ filter = '' }) => {
+const FlatsList = () => {
   const historial = useHistory()
   const query = useQuery();
   const pageParam = query.get("page") || 1 
   const LIMIT = 8
 
-  // Consulta a la API
-  const { data: flats, total } = useFetch(
-    `http://localhost:8000/flats?_expand=building&_expand=user&_sort=created_at,id&_order=desc,desc&_limit=${LIMIT}&_page=${pageParam}`
-  );
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(null);
+  const [error, setError] = useState(null);
+  const [total, setTotal] = useState(null);
+  
+  useEffect(() => {
+    const url = `http://localhost:8000/api/departamentos`
+    const token = localStorage.getItem('token');
+    const headers = { 'Authorization': `Bearer ${token}` }
 
-  const pagesNumber = Math.ceil(total / LIMIT)
+    axios.request({ method: 'GET', url, headers })
+      .then(res => setData(res.data.results))
+      .catch(err => {
+        setError(true)
+        console.log("error", err)
+      })
+  }, []);
+
+
+  // Consulta a la API
+  // const { data: flats, total } = useFetch(
+  //   `http://localhost:8000/flats?_expand=building&_expand=user&_sort=created_at,id&_order=desc,desc&_limit=${LIMIT}&_page=${pageParam}`
+  // );
+
+  // const pagesNumber = Math.ceil(total / LIMIT)
 
   const handleEdit = (id) => {
     historial.push(`/flats/${id}/edit`)
   }
 
   const handleDelete = (id) => {
-    const url = `http://localhost:8000/flats/${id}`
-
+    
     const confirmDelete = window.confirm('Are you sure to delete this flat?')
-
+    
     if (!confirmDelete) {
       return
     }
+    
+    const url = `http://localhost:8000/api/flats/${id}`
+    const token = localStorage.getItem('token');
+    const headers = { 'Authorization': `Bearer ${token}` }
 
-    axios
-      .delete(url)
+
+    axios.request({method: 'DELETE', url, headers})
       .then((response) => {
         // La respuesta del server
         historial.go(0) // regresa al listado de flats
@@ -51,36 +73,33 @@ const FlatsList = ({ filter = '' }) => {
         <thead className="table-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">BUILDING</th>
-            <th scope="col">USER</th>
-            <th scope="col">FLOOR</th>
-            <th scope="col">NUMBER</th>
-            <th scope="col">CREATED AT</th>
-            <th scope="col">UPDATED AT</th>
-            <th scope="col">ACTIONS</th>
+            <th scope="col">NUMERO</th>
+            <th scope="col">PISO</th>
+            <th scope="col">EDIFICIO</th>
+            <th scope="col">PROPIETARIOS</th>
+            <th scope="col">ACCIONES</th>
+
           </tr>
         </thead>
         <tbody>
-          {flats?.map((flat, index) => (
+          {data?.map((flat, index) => (
             <tr key={index}>
               <th scope="row">{flat.id}</th>
-              <td>{flat.building.name}</td>
-              <td>{flat.user.name}</td>
-              <td>{flat.floor}</td>
-              <td>{flat.number}</td>
-              <td>{flat.created_at}</td>
-              <td>{flat.updated_at}</td>
-
+              <td>{flat.numero}</td>
+              <td>{flat.piso}</td>
+              <td>{flat.edificio_extra.nombre}</td>
+              <td>{flat.propietarios}</td>
+             
               <td className="d-flex gap-2 justify-content-center">
-                <button className="btn btn-warning" onClick={() => handleEdit(flat.id)}>Edit</button>
-                <button className="btn btn-danger" onClick={() => handleDelete(flat.id)}>Delete</button>
+                <button className="btn btn-warning" onClick={() => handleEdit(flat.id)}>Editar</button>
+                <button className="btn btn-danger" onClick={() => handleDelete(flat.id)}>Eliminar</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      <Pagination resource="flats" pages={pagesNumber} currentPage={pageParam} />
+      {/* <Pagination resource="flats" pages={pagesNumber} currentPage={pageParam} /> */}
     </>
   )
 }

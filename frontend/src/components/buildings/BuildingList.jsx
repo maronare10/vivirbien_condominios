@@ -1,4 +1,4 @@
-import Axios from 'axios'
+import axios from 'axios'
 import React,{ useState, useEffect } from 'react'
 import useFetch from '../../server/useFecth';
 import Pagination from '../layout/Pagination'
@@ -25,7 +25,7 @@ const BuidingList = () => {
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
 
-    Axios.request({ method: 'GET', url, headers })
+    axios.request({ method: 'GET', url, headers })
       .then(res => setData(res.data.results))
       .catch(err => {
         setError(true)
@@ -55,7 +55,7 @@ const BuidingList = () => {
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
 
-    Axios.request({ method: 'DELETE', url, headers })
+    axios.request({ method: 'DELETE', url, headers })
       .then((response) => {
         // La respuesta del server
         historial.go(0) // regresa al listado de buildings
