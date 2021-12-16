@@ -76,8 +76,9 @@ const BuildingsEdit = () => {
         // La respuesta del server
         historial.push('/buildings')
       })
-      .catch((error) => {
-        console.log(error)
+      .catch((err) => {
+        console.log(err.response.data)
+        setErrors(err.response.data)
       });
   }
 
