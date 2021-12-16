@@ -17,7 +17,7 @@ const FlatsAdd = () => {
     numero: 0,
     piso: 0,
     edificio: null,
-    propietarios: null
+    propietarios: []
   });
 
   const [errors, setErrors] = useState(null)
@@ -60,7 +60,7 @@ const FlatsAdd = () => {
 
     const data = {
       edificio: Number(edificio) ,
-      propietarios: [Number(propietarios)],
+      propietarios,
       piso: Number(piso),
       numero: Number(numero),
     }
@@ -81,9 +81,15 @@ const FlatsAdd = () => {
   }
   
   const actualizarState = (e) => {
+    let value = e.target.value
+    if (e.target.multiple) {
+      value = Array.from(
+        e.target.selectedOptions, option => Number(option.value)
+      )
+    }
     setDatos({
       ...datos,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     });
   };
 
@@ -93,8 +99,20 @@ const FlatsAdd = () => {
       <div className="FlatsAdd">
 
         <form className="m-0" onSubmit={handleSubmit}>
-          <h2 className="mb-5">Create a flat</h2>
+          <h2 className="mb-5">Crear un departamento</h2>
+
+          <div className="mb-3">
+            <label className="form-label">Piso</label>
+            <input type="text" className="form-control" name="piso" onChange={actualizarState} />
+            { errors && errors.piso && <div className="error-message">{errors.piso}</div> }
+          </div>
           
+          <div className="mb-3">
+            <label className="form-label">Número</label>
+            <input type="text" className="form-control" name="numero" onChange={actualizarState} />
+            { errors && errors.numero && <div className="error-message">{errors.numero}</div> }
+          </div>
+
           <div className="mb-3">
             <label className="form-label">Edificio</label>
             <select className="form-select" name="edificio" onChange={actualizarState}>
@@ -108,26 +126,13 @@ const FlatsAdd = () => {
 
           <div className="mb-3">
             <label className="form-label">Propietarios</label>
-            <select className="form-select" name="propietarios" onChange={actualizarState}>
-              <option value="0">Selecciona un propietario</option>
+            <select className="form-select" multiple name="propietarios" onChange={actualizarState}>
               {propietariosData && propietariosData.map((propietario, index) => 
                 <option value={propietario.id} key={index}>{propietario.username}</option>
               )}
             </select>
+            <small>Mantenga presionado "Control" o "Comando" en una Mac, para seleccionar más de uno.</small>
             { errors && errors.propietario && <div className="error-message">{errors.propietario}</div> }
-          </div>
-          
-
-          <div className="mb-3">
-            <label className="form-label">Piso</label>
-            <input type="text" className="form-control" name="piso" onChange={actualizarState} />
-            { errors && errors.piso && <div className="error-message">{errors.piso}</div> }
-          </div>
-          
-          <div className="mb-3">
-            <label className="form-label">Numero</label>
-            <input type="text" className="form-control" name="numero" onChange={actualizarState} />
-            { errors && errors.numero && <div className="error-message">{errors.numero}</div> }
           </div>
 
           <div className="mb-3">
