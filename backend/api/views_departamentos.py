@@ -6,7 +6,7 @@ from .models import Departamento, Edificio
 from .serializers import DepartamentoSerializer
 
 class DepartamentosListCreate(generics.ListCreateAPIView):
-    queryset = Departamento.objects.all()
+    queryset = Departamento.objects.all().order_by('-id')
     serializer_class = DepartamentoSerializer
     permission_classes = (IsAuthenticated,)
 

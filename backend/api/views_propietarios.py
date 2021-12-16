@@ -7,7 +7,7 @@ from .serializers import PropietarioSerializer
 
 
 class PropietariosListCreate(generics.ListCreateAPIView):
-    queryset = User.objects.all()
+    queryset = User.objects.all().order_by('-id')
     serializer_class = PropietarioSerializer
     permission_classes = (IsAuthenticated),
 

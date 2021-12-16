@@ -9,7 +9,7 @@ def servicios(request):
     if request.method == 'GET':
         usuarioLogueado = request.user
         condominiosDelUsuario = usuarioLogueado.condominio_set.all()
-        listaServicios = Servicio.objects.filter(condominio__in=condominiosDelUsuario)
+        listaServicios = Servicio.objects.filter(condominio__in=condominiosDelUsuario).order_by('-id')
         serializersServicios = ServicioSerializer(listaServicios, many=True)
         return Response(serializersServicios.data)
     elif request.method == 'POST':

@@ -5,7 +5,7 @@ from .serializers import EdificioSerializer
 from rest_framework import serializers
 
 class EdificiosListCreate(generics.ListCreateAPIView):
-  queryset = Edificio.objects.all()
+  queryset = Edificio.objects.all().order_by('-id')
   serializer_class = EdificioSerializer 
   permission_class = (IsAuthenticated),
 

@@ -6,7 +6,7 @@ from .serializers import PagoSerializer
 
 
 class PagosListCreate(generics.ListCreateAPIView):
-    queryset = Pago.objects.all()
+    queryset = Pago.objects.all().order_by('-id')
     serializer_class = PagoSerializer
     permission_classes = (IsAuthenticated),
 
