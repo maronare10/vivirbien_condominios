@@ -52,7 +52,7 @@ const FlatsList = () => {
       return
     }
     
-    const url = `http://localhost:8000/api/flats/${id}`
+    const url = `http://localhost:8000/api/departamentos/${id}`
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
 
@@ -88,8 +88,11 @@ const FlatsList = () => {
               <td>{flat.numero}</td>
               <td>{flat.piso}</td>
               <td>{flat.edificio_extra.nombre}</td>
-              <td>{flat.propietarios}</td>
-             
+              <td>
+                {flat.propietarios_extra.map(propietario => 
+                  <div>{propietario.username}</div>
+                )}
+                </td>
               <td className="d-flex gap-2 justify-content-center">
                 <button className="btn btn-warning" onClick={() => handleEdit(flat.id)}>Editar</button>
                 <button className="btn btn-danger" onClick={() => handleDelete(flat.id)}>Eliminar</button>
