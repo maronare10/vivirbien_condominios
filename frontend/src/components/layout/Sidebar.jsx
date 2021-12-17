@@ -18,6 +18,8 @@ const Sidebar = () => {
     setMenuSelected(menuName)
   }
 
+  const isAdministrador = () => localStorage.getItem('role') === 'administrador'
+
   return (
     <div className={`Sidebar MainSidebar d-flex flex-column flex-shrink-0 p-0 text-white bg-condominio ${toggleSidebar ? 'is-closed' : ''}`}>
       <h1 className="p-4">
@@ -34,24 +36,34 @@ const Sidebar = () => {
             <span>Inicio</span>
           </Link>
         </li>
-        <li className="nav-item">
-          <Link className={`nav-link ${menuSelected === 'buildings' && 'ActiveItem'}`} to="/buildings" onClick={() => activeMenuSelected('buildings')}>
-            <img src={iconBuilding} alt="icon-home"></img>
-            <span>Edificios</span>
-          </Link>
-        </li>
+
+        {isAdministrador() &&
+          <li className="nav-item">
+            <Link className={`nav-link ${menuSelected === 'buildings' && 'ActiveItem'}`} to="/buildings" onClick={() => activeMenuSelected('buildings')}>
+              <img src={iconBuilding} alt="icon-home"></img>
+              <span>Edificios</span>
+            </Link>
+          </li>
+        }
+
+        {isAdministrador() &&
         <li className="nav-item">
           <Link className={`nav-link ${menuSelected === 'flats' && 'ActiveItem'}`} to="/flats" onClick={() => activeMenuSelected('flats')}>
             <img src={iconFlats} alt="icon-home"></img>
             <span>Departamentos</span>
           </Link>
         </li>
+        }
+
+        {isAdministrador() &&
         <li className="nav-item">
           <Link  className={`nav-link ${menuSelected === 'users' && 'ActiveItem'}`} to="./Users" onClick={() => activeMenuSelected('users')}>
             <img src={iconUsers} alt="icon-home"></img>
             <span>Usuarios</span>
           </Link>
         </li>
+        }
+
         {/* <li className="nav-item">
           <a className="nav-link" href="#">
             <img src={iconRoles} alt="icon-home"></img>

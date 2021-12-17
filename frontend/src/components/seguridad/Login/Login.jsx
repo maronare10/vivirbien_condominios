@@ -41,10 +41,12 @@ function Login() {
       .then(res => {
         const data = res.data
         const accessToken = data.access
-        const userInfo = getInfoToken(accessToken)
+        const userInfo = getInfoToken(accessToken);
         localStorage.setItem('token', accessToken);
         localStorage.setItem('condominio', userInfo.condominio_nombre);
         localStorage.setItem('name', userInfo.usuario_nombre);
+        localStorage.setItem('username', userInfo.username);
+        localStorage.setItem('role', userInfo.role);
         return history.push("/Home")
       })
       .catch(err => {
@@ -67,11 +69,11 @@ function Login() {
           <form className="frmLogin" onSubmit={autenticacion}>
             <h2 className="fw-bold text-center  ">BIENVENIDOS</h2>
             {error ? <p className="alerta-error">Rellenar todos los campos</p> : null}
-            <div class="mb-3">
+            <div className="mb-3">
               <input
                 type="text"
                 name="email"
-                class="form-control"
+                className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="email"
@@ -79,11 +81,11 @@ function Login() {
                 value={email}
               ></input>
             </div>
-            <div class="mb-3">
+            <div className="mb-3">
               <input
                 type="password"
                 name="pass"
-                class="form-control"
+                className="form-control"
                 id="exampleInputPassword1"
                 placeholder="Password"
                 onChange={actualizarState}
