@@ -89,8 +89,8 @@ const FlatsList = () => {
               <td>{flat.piso}</td>
               <td>{flat.edificio_extra.nombre}</td>
               <td>
-                {flat.propietarios_extra.map(propietario => 
-                  <div>{propietario.username}</div>
+                {flat.propietarios_extra.map((propietario, index) => 
+                  <div key={index}>{propietario.username}</div>
                 )}
                 </td>
               <td className="d-flex gap-2 justify-content-center">
