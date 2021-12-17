@@ -20,8 +20,11 @@ urlpatterns = [
     path('departamentos', views_departamentos.DepartamentosListCreate.as_view()),
     path('departamentos/<int:pk>', views_departamentos.DepartamentosRetrieveUpdateDestroy.as_view()),
 
-    path('servicios', views_servicios.servicios),
-    path('servicios/<int:servicio_id>', views_servicios.servicio),
+    # path('servicios', views_servicios.servicios),
+    # path('servicios/<int:servicio_id>', views_servicios.servicio),
+    
+    path('servicios', views_servicios.ServiciosListCreate.as_view()),
+    path('servicios/<int:servicio_id>', views_servicios.ServiciosRetrieveUpdateDestroy.as_view()),
 
     path('pagos', views_pagos.PagosListCreate.as_view()),
     path('pagos/<int:pk>', views_pagos.PagosRetrieveUpdateDestroy.as_view()),
