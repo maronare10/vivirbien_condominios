@@ -83,7 +83,6 @@ class DepartamentoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Departamento
         fields = '__all__'
-        order = 'id'
 
     def get_edificio_extra(self, obj):
         return {
@@ -102,16 +101,22 @@ class ServicioSerializer(serializers.ModelSerializer):
 
 
 class PagoSerializer(serializers.ModelSerializer):
+    departamento_extra = serializers.SerializerMethodField()
+
     class Meta:
         model = Pago
         fields = [
             'id',
             'monto_a_pagar', 
+            'monto_pagado',
             'vencimiento',
             'departamento', 
             'servicio', 
             'pagado_por',
             'voucher',
+            'departamento_extra',
+            'fecha_creacion',
+            'fecha_actualizacion',
         ]
 
     def to_representation(self, instance):
@@ -119,6 +124,13 @@ class PagoSerializer(serializers.ModelSerializer):
         if (instance.voucher):
             representation['voucher'] = instance.voucher.url
         return representation
+    
+    def get_departamento_extra(self, obj):
+        return {
+            "numero": obj.departamento.numero,
+            "edificio": obj.departamento.edificio.nombre,
+            "propietarios": obj.departamento.propietarios.values('username', 'first_name', 'last_name')
+        }
 
 
 
