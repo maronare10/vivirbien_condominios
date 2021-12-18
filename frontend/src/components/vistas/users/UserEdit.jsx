@@ -11,6 +11,8 @@ const UserEdit = () => {
 
   const { id } = useParams();
 
+  const [ departamentosData, setDepartamentosData ] = useState([])
+
   const [datos, setDatos] = useState({
     username: "",
     nombre: "",
@@ -23,24 +25,35 @@ const UserEdit = () => {
 
   const { username, nombre, apellido, email, password } = datos;
 
-
   const url_propietario = `http://localhost:8000/api/propietarios/${id}`;
 
   useEffect(() => {
+    const url_departamentos = 'http://localhost:8000/api/departamentos?page_size=1000'
+
     const token = localStorage.getItem('token');
     const headers = {
     'Authorization': `Bearer ${token}`}
     
     const config_propietario = { method: 'GET', url: url_propietario, headers }
+    const config_departamentos = { method: 'GET', url: url_departamentos, headers }
 
-  axios.request(config_propietario)
-    .then((response) => {
-      const { username, first_name, last_name, email, password } = response.data
-      setDatos({ username, nombre: first_name, apellido: last_name, email, password })
-    })
-    .catch((error) => {
-      console.log(error)
-    });
+    axios.request(config_departamentos)
+      .then((response) => {
+        console.log(response.data.results)
+        setDepartamentosData(response.data.results)
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+
+    axios.request(config_propietario)
+      .then((response) => {
+        const { username, first_name, last_name, email, password } = response.data
+        setDatos({ username, nombre: first_name, apellido: last_name, email, password })
+      })
+      .catch((error) => {
+        console.log(error)
+      });
   }, [])
 
 const actualizarState = (e) => {
@@ -83,6 +96,19 @@ return (
 
       <form className="m-0" onSubmit={handleSubmit}>
         <h2 className="mb-5">Editar Propietario</h2>
+
+        {/* <div className="mb-3">
+            <label className="form-label">Departamento</label>
+            <select className="form-select" name="departamento" onChange={actualizarState}>
+              <option value="0">Selecciona un dpto.</option>
+              {departamentosData.map((flat, index) => 
+                <option value={flat.id} key={index}>
+                  {flat.edificio_extra.nombre}: {flat.numero}
+                </option>
+              )}
+            </select>
+            { errors && errors.departamento && <div className="error-message">{errors.departamento}</div> }
+          </div> */}
 
         <div className="mb-3">
             <label className="form-label">Username</label>

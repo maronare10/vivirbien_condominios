@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { useHistory } from "react-router-dom";
 
@@ -7,6 +7,8 @@ const UserAdd = () => {
   let cat = localStorage.getItem('condominio');
 
   const historial = useHistory()
+
+  const [ departamentosData, setDepartamentosData ] = useState([])
 
   const [datos, setDatos] = useState({
     username: "",
@@ -20,6 +22,22 @@ const UserAdd = () => {
 
   const { username, nombre, apellido, email, password } = datos
 
+  useEffect(() => {
+    const url_departamentos = 'http://localhost:8000/api/departamentos?page_size=1000'
+    const token = localStorage.getItem('token');
+    const headers = { 'Authorization': `Bearer ${token}` }
+    const config_departamentos = { method: 'GET', url: url_departamentos, headers }
+
+    axios.request(config_departamentos)
+      .then((response) => {
+        console.log(response.data.results)
+        setDepartamentosData(response.data.results)
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  }, [])
+
   function handleSubmit(e) {
     e.preventDefault()
 
@@ -32,8 +50,6 @@ const UserAdd = () => {
       email,
       password,
     }
-
-    console.log(data)
 
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
@@ -65,6 +81,19 @@ const UserAdd = () => {
 
         <form className="m-0" onSubmit={handleSubmit}>
           <h2 className="mb-5">Crear un usuario</h2>
+
+          {/* <div className="mb-3">
+            <label className="form-label">Departamento</label>
+            <select className="form-select" name="departamento" onChange={actualizarState}>
+              <option value="0">Selecciona un dpto.</option>
+              {departamentosData.map((flat, index) => 
+                <option value={flat.id} key={index}>
+                  {flat.edificio_extra.nombre}: {flat.numero}
+                </option>
+              )}
+            </select>
+            { errors && errors.departamento && <div className="error-message">{errors.departamento}</div> }
+          </div> */}
 
           <div className="mb-3">
             <label className="form-label">Username</label>
