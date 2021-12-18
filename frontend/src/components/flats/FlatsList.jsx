@@ -16,8 +16,8 @@ const FlatsList = () => {
   const [loading, setLoading] = useState(null);
   const [errors, setErrors] = useState(null);
   const [pagination, setPagination] = useState({
-    total: 0,
     page_size: 10,
+    pages: 0
   });
   
   useEffect(() => {
@@ -30,7 +30,7 @@ const FlatsList = () => {
         const { count, page_size, results } = res.data
         const pages = Math.ceil(count / page_size)
         setData(results)
-        setPagination({ count, page_size, pages })
+        setPagination({ page_size, pages })
       })
       .catch(err => {
         setErrors(true)
