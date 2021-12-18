@@ -63,7 +63,13 @@ const PaymentList = () => {
       });
   }
 
-  const formatDate = (dateStr) => new Intl.DateTimeFormat('es-PE').format(new Date(dateStr))
+  const formatoCortoAFecha = (dateStr) => {
+    const datePattern = /^(\d{2})-(\d{2})-(\d{4})$/;
+    const [, day, month, year] = datePattern.exec('28-02-2021');
+    return new Date(`${month}, ${day} ${year}`);
+  }
+
+  const formatoLargoAFecha = (dateStr) => new Intl.DateTimeFormat('es-PE').format(new Date(dateStr))
 
   const isAdministrador = () => localStorage.getItem('role') === 'administrador'
 
@@ -100,8 +106,8 @@ const PaymentList = () => {
               <td>
                 <span className='text-capitalize text-truncate'>{payment.servicio_extra.nombre}</span>
               </td>
-              <td>{formatDate(payment.vencimiento)}</td>
-              <td>{payment.monto_a_pagar || '0.00'}</td>
+              <td>{formatoLargoAFecha(formatoCortoAFecha(payment.vencimiento))}</td>
+              <td>{payment.montto_a_pagar || '0.00'}</td>
               <td>{payment.monto_pagado || '0.00'}</td>
               <td>
                 {
@@ -110,7 +116,7 @@ const PaymentList = () => {
                   : <span className="badge bg-danger">Pendiente</span>
                 }
               </td>
-              <td>{formatDate(payment.fecha_actualizacion)}</td>
+              <td>{formatoLargoAFecha(payment.fecha_actualizacion)}</td>
               { isAdministrador() && 
                 <td className="d-flex gap-2 justify-content-center">
                   <button className="btn btn-warning" onClick={() => handleEdit(payment.id)}>Edit</button>
