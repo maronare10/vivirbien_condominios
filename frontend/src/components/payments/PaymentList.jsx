@@ -1,9 +1,7 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import useFetch from '../../server/useFecth';
 import Pagination from '../layout/Pagination'
 import { useHistory, useLocation } from "react-router-dom";
-import useApp from "../../server/useApp";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -13,23 +11,32 @@ const PaymentList = () => {
   const historial = useHistory()
   const query = useQuery();
   const pageParam = query.get("page") || 1 
-  const LIMIT = 8
 
   const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(null);
+  const [errors, setErrors] = useState(null);
+  const [pagination, setPagination] = useState({
+    page_size: 10,
+    pages: 0
+  });
 
   useEffect(() => {
-    const url = `http://localhost:8000/api/pagos`
+    const url = `http://localhost:8000/api/pagos?page=${pageParam}`
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
 
     axios.request({ method: 'GET', url, headers })
-      .then(res => setData(res.data.results))
-      .catch(err => {
-        setError(true)
-        console.log("error", err)
+      .then(res => {
+        const { count, page_size, results } = res.data
+        const pages = Math.ceil(count / page_size)
+        setData(results)
+        setPagination({ count, page_size, pages })
       })
-  }, []);
+      .catch(err => {
+        setErrors(true)
+        historial.push('/payments')
+      })
+  }, [pageParam]);
 
   const handleEdit = (id) => {
     historial.push(`/payments/${id}/edit`)
@@ -111,7 +118,7 @@ const PaymentList = () => {
         </tbody>
       </table>
 
-      {/* <Pagination resource="payments" pages={pagesNumber} currentPage={pageParam} /> */}
+      <Pagination resource="payments" pages={pagination.pages} currentPage={pageParam} />
     </>
   )
 }
