@@ -22,6 +22,8 @@ python manage.py loaddata db
 python manage.py runserver
 ```
 
+> **NOTA SOBRE LOS USUARIOS:** existen tres tipos admin@vivirbien.com(superusuario, solo accede al admin de django), admin@santaelvira.com(admin de condominio, accede solo por el API sin restricciones solo a su condominio) y user#@santaelvira.com(usuario propietario, accede solo por el API con restricciones) y sobre las contraseñas pueden usar el comando "python manage.py changepassword".
+
 ### Como cargar data de prueba en backend nuevamente:
 
 Se puede eliminar el archivo db.sqlite o usar el comando flush para limpiar la data.
@@ -37,6 +39,8 @@ El comando loaddata es para cargar la data de prueba que se encuentra en db json
 ```
 python manage.py loaddata db 
 ```
+
+
 
 ### PROYECTO FRONTEND
 
