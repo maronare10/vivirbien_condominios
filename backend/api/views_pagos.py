@@ -23,7 +23,7 @@ class PagosListCreate(generics.ListCreateAPIView):
             edificiosEnLosCondominios = Edificio.objects.filter(condominio__in=condominiosDelPropietario)
             departamentosDeLosEdificios = Departamento.objects.filter(edificio__in=edificiosEnLosCondominios)
             pagosDeLosDepartamentos = Pago.objects.filter(departamento__in=departamentosDeLosEdificios)
-            return pagosDeLosDepartamentos.all()
+            return pagosDeLosDepartamentos.all().order_by('-id')
         elif(esPropietario.exists()):
             departamentosDelPropietario = propietario.departamento_set.all()
             return self.queryset.filter(departamento__in=departamentosDelPropietario)
