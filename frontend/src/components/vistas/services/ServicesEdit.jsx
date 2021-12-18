@@ -21,7 +21,7 @@ const ServicesEdit = () => {
 
   const { nombre, condominio } = datos;
 
-  const url_condominios = 'http://localhost:8000/api/condominios'
+  const url_condominios = 'http://localhost:8000/api/condominios?page_size=1000'
   const url_servicio = `http://localhost:8000/api/servicios/${id}`
 
   useEffect(() => {
