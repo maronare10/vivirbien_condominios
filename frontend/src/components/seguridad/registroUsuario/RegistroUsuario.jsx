@@ -23,7 +23,7 @@ function RegistroUsuario(props) {
   function submit(e){
     e.preventDefault();
 
-    const data = {
+    const data2 = {
       first_name: data.name,
       last_name: data.name,
       username: data.email,
@@ -33,7 +33,7 @@ function RegistroUsuario(props) {
       condominio_nombre: data.condominio,
   }
 
-    Axios.post(url, data)
+    Axios.post(url, data2)
     .then(res=>{
         console.log(res.data)
         history.push('/')

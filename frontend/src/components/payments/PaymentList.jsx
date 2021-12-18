@@ -106,8 +106,8 @@ const PaymentList = () => {
               <td>
                 <span className='text-capitalize text-truncate'>{payment.servicio_extra.nombre}</span>
               </td>
-              <td>{formatoLargoAFecha(formatoCortoAFecha(payment.vencimiento))}</td>
-              <td>{payment.montto_a_pagar || '0.00'}</td>
+              <td>{payment.vencimiento}</td>
+              <td>{payment.monto_a_pagar || '0.00'}</td>
               <td>{payment.monto_pagado || '0.00'}</td>
               <td>
                 {
