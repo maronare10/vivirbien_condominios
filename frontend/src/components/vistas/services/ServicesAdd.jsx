@@ -19,7 +19,7 @@ const ServicesAdd = () => {
   const { nombre, departamentos, pisos, condominio } = datos;
 
   useEffect(() => {
-    const url = 'http://localhost:8000/api/condominios'
+    const url = 'http://localhost:8000/api/condominios?page_size=1000'
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
     const config = { method: 'GET', url, headers }

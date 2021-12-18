@@ -43,9 +43,9 @@ const PaymentsEdit = () => {
   const url_pago = `http://localhost:8000/api/pagos/${id}`
 
   useEffect(() => {
-    const url_departamentos = 'http://localhost:8000/api/departamentos'
-    const url_propietarios = 'http://localhost:8000/api/propietarios'
-    const url_servicios = 'http://localhost:8000/api/servicios'
+    const url_departamentos = 'http://localhost:8000/api/departamentos?page_size=1000'
+    const url_propietarios = 'http://localhost:8000/api/propietarios?page_size=1000'
+    const url_servicios = 'http://localhost:8000/api/servicios?page_size=1000'
 
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
