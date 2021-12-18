@@ -202,12 +202,6 @@ const PaymentsEdit = () => {
             <input type="text" className="form-control" name="numero_operacion" value={numero_operacion} onChange={actualizarState} />
             { errors && errors.numero_operacion && <div className="error-message">{errors.numero_operacion}</div> }
           </div>
-
-          <div className="mb-3">
-            <label className="form-label">Voucher(foto)</label>
-            <input type="text" className="form-control" name="numero_operacion" value={voucher} onChange={actualizarState} />
-            { errors && errors.voucher && <div className="error-message">{errors.voucher}</div> }
-          </div>
           
           <div className="mb-3">
             <label className="form-label">Pagado por</label>
@@ -221,6 +215,19 @@ const PaymentsEdit = () => {
             </select>
             { errors && errors.pagado_por && <div className="error-message">{errors.pagado_por}</div> }
           </div>
+
+          {/* <div className="mb-3">
+            <label className="form-label">Voucher(foto)</label>
+            <input
+              disabled 
+              type="file"
+              accept="image/png, image/jpeg"
+              className="form-control"
+              name="numero_operacion"
+              value={voucher}
+              onChange={actualizarState} />
+            { errors && errors.voucher && <div className="error-message">{errors.voucher}</div> }
+          </div> */}
 
           <div className="mb-3">
             <input type="submit" className="form-control btn btn-primary" />

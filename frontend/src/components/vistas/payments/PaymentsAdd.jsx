@@ -172,12 +172,6 @@ const PaymentsAdd = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Voucher(foto)</label>
-            <input type="text" className="form-control" name="numero_operacion" onChange={actualizarState} />
-            { errors && errors.voucher && <div className="error-message">{errors.voucher}</div> }
-          </div>
-          
-          <div className="mb-3">
             <label className="form-label">Pagado por</label>
             <select className="form-select" name="pagado_por" onChange={actualizarState}>
               <option value="0">Selecciona un propietario.</option>
@@ -188,6 +182,18 @@ const PaymentsAdd = () => {
               )}
             </select>
             { errors && errors.pagado_por && <div className="error-message">{errors.pagado_por}</div> }
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Voucher(foto)</label>
+            <input
+              disabled
+              type="file"
+              accept="image/png, image/jpeg"
+              className="form-control"
+              name="numero_operacion"
+              onChange={actualizarState} />
+            { errors && errors.voucher && <div className="error-message">{errors.voucher}</div> }
           </div>
 
           <div className="mb-3">
