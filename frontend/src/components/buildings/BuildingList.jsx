@@ -40,12 +40,6 @@ const BuildingList = () => {
       })
   }, [pageParam]);
 
-  // const { data: buildings, total } = useFetch(
-  //   `http://localhost:8000/buildings?_sort=created_at,id&_order=desc,desc&_limit=${LIMIT}_page=${pageParam}`
-  // );
-
-  // const pagesNumber = Math.ceil(total / LIMIT)
-
   const handleEdit = (id) => {
     historial.push(`/buildings/${id}/edit`)
   }

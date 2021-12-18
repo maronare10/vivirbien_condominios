@@ -85,12 +85,12 @@ const BuildingsAdd = () => {
             { errors && errors.nombre && <div className="error-message">{errors.nombre}</div> }
           </div>
           <div className="mb-3">
-            <label className="form-label">Departamentos</label>
+            <label className="form-label"># Departamentos</label>
             <input type="text" className="form-control" name="departamentos" onChange={actualizarState} />
             { errors && errors.departamentos && <div className="error-message">{errors.departamentos}</div> }
           </div>
           <div className="mb-3">
-            <label className="form-label">Pisos</label>
+            <label className="form-label"># Pisos</label>
             <input type="text" className="form-control" name="pisos" onChange={actualizarState} />
             { errors && errors.pisos && <div className="error-message">{errors.pisos}</div> }
           </div>
