@@ -23,8 +23,8 @@ const FlatsAdd = () => {
   const { numero, piso, edificio, propietarios } = datos;
 
   useEffect(() => {
-    const url_edificios = 'http://localhost:8000/api/edificios'
-    const url_propietarios = 'http://localhost:8000/api/propietarios'
+    const url_edificios = 'http://localhost:8000/api/edificios?page_size=1000'
+    const url_propietarios = 'http://localhost:8000/api/propietarios?page_size=1000'
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
     const config_edificios = { method: 'GET', url: url_edificios, headers }

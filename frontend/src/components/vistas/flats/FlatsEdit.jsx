@@ -27,8 +27,8 @@ const FlatsEdit = () => {
   const url_departamento = `http://localhost:8000/api/departamentos/${id}`
 
   useEffect(() => {
-    const url_edificios = `http://localhost:8000/api/edificios`
-    const url_propietarios = `http://localhost:8000/api/propietarios`
+    const url_edificios = `http://localhost:8000/api/edificios?page_size=1000`
+    const url_propietarios = `http://localhost:8000/api/propietarios?page_size=1000`
     
     const token = localStorage.getItem('token');
     const headers = {
