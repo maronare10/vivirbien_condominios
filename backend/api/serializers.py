@@ -102,6 +102,7 @@ class ServicioSerializer(serializers.ModelSerializer):
 
 class PagoSerializer(serializers.ModelSerializer):
     departamento_extra = serializers.SerializerMethodField()
+    servicio_extra = serializers.SerializerMethodField()
 
     class Meta:
         model = Pago
@@ -115,6 +116,7 @@ class PagoSerializer(serializers.ModelSerializer):
             'pagado_por',
             'voucher',
             'departamento_extra',
+            'servicio_extra',
             'fecha_creacion',
             'fecha_actualizacion',
         ]
@@ -130,6 +132,11 @@ class PagoSerializer(serializers.ModelSerializer):
             "numero": obj.departamento.numero,
             "edificio": obj.departamento.edificio.nombre,
             "propietarios": obj.departamento.propietarios.values('username', 'first_name', 'last_name')
+        }
+    
+    def get_servicio_extra(self, obj):
+        return {
+            "nombre": obj.servicio.nombre,
         }
 
 
