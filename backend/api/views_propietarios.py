@@ -4,12 +4,14 @@ from rest_framework import generics
 from django.contrib.auth.models import User, Group
 from .models import Departamento, Edificio
 from .serializers import PropietarioSerializer
+from .pagination import CustomPagination
 
 
 class PropietariosListCreate(generics.ListCreateAPIView):
     queryset = User.objects.all().order_by('-id')
     serializer_class = PropietarioSerializer
     permission_classes = (IsAuthenticated),
+    pagination_class = CustomPagination
 
     def get_queryset(self):
         usuarioLogueado = self.request.user
