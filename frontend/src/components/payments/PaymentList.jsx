@@ -74,6 +74,7 @@ const PaymentList = () => {
           <tr>
             <th scope="col">#</th>
             <th scope="col">DPTO.<br />USUARIO</th>
+            <th scope="col">SERVICIO</th>
             <th scope="col">VENCIMIENTO</th>
             <th scope="col">MONTO<br />A PAGAR</th>
             <th scope="col">MONTO<br />PAGADO</th>
@@ -95,6 +96,9 @@ const PaymentList = () => {
                     propietario => <div key={index}>{propietario.username}</div>
                   )
                 }
+              </td>
+              <td>
+                <span className='text-capitalize text-truncate'>{payment.servicio_extra.nombre}</span>
               </td>
               <td>{formatDate(payment.vencimiento)}</td>
               <td>{payment.monto_a_pagar || '0.00'}</td>
