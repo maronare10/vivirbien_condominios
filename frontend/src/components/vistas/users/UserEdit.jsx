@@ -3,119 +3,124 @@ import React, { useState, useEffect } from "react";
 
 import { useHistory, useParams } from "react-router-dom";
 
-import useApp from "../../../server/useApp";
-
 import "./UserEdit.scss";
 
 const UserEdit = () => {
   let cat = localStorage.getItem("condominio");
   const historial = useHistory();
 
-  const { buildings, users } = useApp();
-
   const { id } = useParams();
 
-  const url = `http://localhost:8000/users/${id}`;
+  const [datos, setDatos] = useState({
+    username: "",
+    nombre: "",
+    apellido: "",
+    email: "",
+    password: ""
+  });
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState(null)
+
+  const { username, nombre, apellido, email, password } = datos;
+
+
+  const url_propietario = `http://localhost:8000/api/propietarios/${id}`;
 
   useEffect(() => {
-    axios.get(url).then((response) => {
-      setName(response.data.name);
-      setEmail(response.data.email);
-      setPassword(response.data.password);
+    const token = localStorage.getItem('token');
+    const headers = {
+    'Authorization': `Bearer ${token}`}
+    
+    const config_propietario = { method: 'GET', url: url_propietario, headers }
+
+  axios.request(config_propietario)
+    .then((response) => {
+      const { username, first_name, last_name, email, password } = response.data
+      setDatos({ username, nombre: first_name, apellido: last_name, email, password })
+    })
+    .catch((error) => {
+      console.log(error)
     });
-  }, []);
+  }, [])
 
-  function currentDate() {
-    const now = new Date();
-    const day = now.getDate();
-    const month = now.getMonth();
-    const year = now.getFullYear();
-    return `${year}-${month}-${day}`;
+const actualizarState = (e) => {
+  let value = e.target.value
+  setDatos({
+    ...datos,
+    [e.target.name]: value,
+  });
+}
+
+function handleSubmit(e) {
+  e.preventDefault()
+
+  const data = {
+    username,
+    first_name: nombre,
+    last_name: apellido,
+    email,
+    password,
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  const token = localStorage.getItem('token');
+  const headers = { 'Authorization': `Bearer ${token}` }
+  const config = { method: 'PUT', url: url_propietario, data, headers }
 
-    const data = {
-      name,
-      email,
-      password,
-      condominio:cat,
-      role:"propietario",
-      created_at: currentDate(),
-      updated_at: currentDate(),
-    };
+  axios.request(config)
+    .then((response) => {
+      //La respuesta del server
+      historial.push('/Users')
+    })
+    .catch((err) => {
+      console.log(err)
+      setErrors(err)
+    });
+}
 
-    axios
-      .put(url, data)
-      .then((response) => {
-        // La respuesta del server
-        historial.push("/Users");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+return (
+  <div className="MainSeccion__content p-5 text-start">
+    <div className="UserEdit">
 
-  function handleName(event) {
-    setName(event.target.value);
-  }
+      <form className="m-0" onSubmit={handleSubmit}>
+        <h2 className="mb-5">Editar Propietario</h2>
 
-  function handleEmail(event) {
-    setEmail(event.target.value);
-  }
-
-  function handlePass(event) {
-    setPassword(event.target.value);
-  }
-
-  return (
-    <div className="MainSeccion__content p-5 text-start">
-      <div className="UserEdit">
-        <form className="m-0" onSubmit={handleSubmit}>
-          <h2 className="mb-5">Edit User</h2>
+        <div className="mb-3">
+            <label className="form-label">Username</label>
+            <input type="text" className="form-control" name="username" value={username} onChange={actualizarState} />
+            { errors && errors.username && <div className="error-message">{errors.departamentos}</div> }
+          </div>
 
           <div className="mb-3">
-            <label className="form-label">Name</label>
-            <input
-              type="text"
-              className="form-control"
-              value={name}
-              onChange={handleName}
-            />
+            <label className="form-label">Nombre</label>
+            <input type="text" className="form-control" name="nombre" value={nombre} onChange={actualizarState} />
+            { errors && errors.nombre && <div className="error-message">{errors.nombre}</div> }
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Apellido</label>
+            <input type="text" className="form-control" name="apellido" value={apellido} onChange={actualizarState} />
+            { errors && errors.apellido && <div className="error-message">{errors.apellido}</div> }
           </div>
 
           <div className="mb-3">
             <label className="form-label">Email</label>
-            <input
-              type="email"
-              className="form-control"
-              value={email}
-              onChange={handleEmail}
-            />
+            <input type="text" className="form-control" name="email" value={email} onChange={actualizarState} />
+            { errors && errors.email && <div className="error-message">{errors.email}</div> }
           </div>
 
           <div className="mb-3">
             <label className="form-label">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              value={password}
-              onChange={handlePass}
-            />
+            <input type="text" className="form-control" name="password" value={password} onChange={actualizarState} />
+            { errors && errors.password && <div className="error-message">{errors.password}</div> }
           </div>
 
           <div className="mb-3">
             <input type="submit" className="form-control btn btn-primary" />
           </div>
-        </form>
-      </div>
+      </form>
     </div>
-  );
+  </div>
+);
 };
 
 export default UserEdit;

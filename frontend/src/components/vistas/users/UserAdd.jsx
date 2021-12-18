@@ -4,61 +4,59 @@ import React, { useState } from 'react'
 import { useHistory } from "react-router-dom";
 
 const UserAdd = () => {
-    let cat = localStorage.getItem('condominio');
-  
-    const historial = useHistory()
+  let cat = localStorage.getItem('condominio');
 
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const historial = useHistory()
 
-  function currentDate() {
-    const now = new Date()
-    const day = now.getDate()
-    const month = now.getMonth()
-    const year = now.getFullYear()
-    return `${year}-${month}-${day}`
-  }
+  const [datos, setDatos] = useState({
+    username: "",
+    nombre: "",
+    apellido: "",
+    email: "",
+    password: ""
+  });
+
+  const [errors, setErrors] = useState(null)
+
+  const { username, nombre, apellido, email, password } = datos
 
   function handleSubmit(e) {
     e.preventDefault()
 
-    const url = "http://localhost:8000/users"
+    const url = "http://localhost:8000/api/propietarios"
 
     const data = {
-      name,
+      username,
+      first_name: nombre,
+      last_name: apellido,
       email,
       password,
-      role:"propietario",
-      condominio:cat,
-      created_at: currentDate(),
-      updated_at: currentDate()
     }
 
-    axios
-      .post(url, data)
+    console.log(data)
+
+    const token = localStorage.getItem('token');
+    const headers = { 'Authorization': `Bearer ${token}` }
+    const config = { method: 'POST', url, data, headers }
+
+    axios.request(config)
       .then((response) => {
         // La respuesta del server
-        console.log('push,,,,,')
         historial.push('/Users')
       })
-      .catch((error) => {
-        console.log(error)
+      .catch((err) => {
+        console.log(err.response.data)
+        setErrors(err.response.data)
       });
   }
 
-  function handleName(event) {
-    setName(event.target.value)
-
+  const actualizarState = (e) => {
+    let value = e.target.value
+    setDatos({
+      ...datos,
+      [e.target.name]: value,
+    });
   }
-
-  function handleEmail(event) {
-    setEmail(event.target.value)
-  }
-
-  function handlePass(event) {
-    setPassword(event.target.value)
-  } 
 
   return (
     <div className="MainSeccion__content p-5 text-start">
@@ -66,25 +64,54 @@ const UserAdd = () => {
       <div className="BuildingAdd">
 
         <form className="m-0" onSubmit={handleSubmit}>
-          <h2 className="mb-5">Create a User</h2>
+          <h2 className="mb-5">Crear un usuario</h2>
+
           <div className="mb-3">
-            <label className="form-label">Name</label>
-            <input type="text" className="form-control" onChange={handleName} />
+            <label className="form-label">Username</label>
+            <input type="text" className="form-control" name="username" onChange={actualizarState} />
+            {errors && errors.username &&
+            <div className="error-message">
+            {errors.username}</div> }
           </div>
+
+          <div className="mb-3">
+            <label className="form-label">Nombre</label>
+            <input type="text" className="form-control" name="nombre" onChange={actualizarState} />
+            {errors && errors.nombre &&
+            <div className="error-message">
+            {errors.nombre}</div> }
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Apellido</label>
+            <input type="text" className="form-control" name="apellido" onChange={actualizarState} />
+            {errors && errors.apellido &&
+            <div className="error-message">
+            {errors.apellido}</div> }
+          </div>
+
           <div className="mb-3">
             <label className="form-label">Email</label>
-            <input type="email" className="form-control" onChange={handleEmail} />
+            <input type="text" className="form-control" name="email" onChange={actualizarState} />
+            {errors && errors.email &&
+            <div className="error-message">
+            {errors.email}</div> }
           </div>
+
           <div className="mb-3">
             <label className="form-label">Password</label>
-            <input type="password" className="form-control" onChange={handlePass} />
+            <input type="password" className="form-control" name="password" onChange={actualizarState} />
+            {errors && errors.password &&
+            <div className="error-message">
+            {errors.password}</div> }
           </div>
+
           <div className="mb-3">
-            <input type="submit" value="Create" className="form-control btn btn-primary" />
+            <input type="submit" className="form-control btn btn-primary" />
           </div>
+
         </form>
       </div>
-
     </div>
   )
 }
