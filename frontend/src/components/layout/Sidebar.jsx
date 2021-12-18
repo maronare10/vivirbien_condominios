@@ -4,7 +4,7 @@ import iconHome from '../../asset/icons/icon-home.svg';
 import iconBuilding from '../../asset/icons/icon-building.svg';
 import iconFlats from '../../asset/icons/icon-flats.svg';
 import iconUsers from '../../asset/icons/icon-users.svg';
-// import iconRoles from '../../asset/icons/icon-roles.svg';
+import iconRoles from '../../asset/icons/icon-roles.svg';
 import iconConfig from '../../asset/icons/icon-config.svg';
 import useApp from '../../server/useApp';
 import { Link } from 'react-router-dom';
@@ -60,6 +60,15 @@ const Sidebar = () => {
           <Link  className={`nav-link ${menuSelected === 'users' && 'ActiveItem'}`} to="./Users" onClick={() => activeMenuSelected('users')}>
             <img src={iconUsers} alt="icon-home"></img>
             <span>Usuarios</span>
+          </Link>
+        </li>
+        }
+
+        {isAdministrador() &&
+        <li className="nav-item">
+          <Link  className={`nav-link ${menuSelected === 'services' && 'ActiveItem'}`} to="./services" onClick={() => activeMenuSelected('services')}>
+            <img src={iconRoles} alt="icon-home"></img>
+            <span>Services</span>
           </Link>
         </li>
         }
