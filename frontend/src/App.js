@@ -1,23 +1,36 @@
 import React from "react";
 
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
+
 import Login from './components/seguridad/Login/Login.jsx'
+
 import RegistroUsuario from './components/seguridad/registroUsuario/RegistroUsuario';
+
+import Sidebar from './components/layout/Sidebar'
+import Navbar from './components/layout/Navbar'
+
 import Home from './components/vistas/home/Home';
+
 import Buildings from './components/vistas/buildings/Buildings';
 import BuildingsAdd from './components/vistas/buildings/BuildingsAdd';
 import BuildingsEdit from './components/vistas/buildings/BuildingsEdit';
+
 import Flats from './components/vistas/flats/Flats';
 import FlatsAdd from './components/vistas/flats/FlatsAdd';
+import FlatsEdit from './components/vistas/flats/FlatsEdit';
+
 import Payments from './components/vistas/payments/Payments.jsx';
 import PaymentsAdd from './components/vistas/payments/PaymentsAdd.jsx';
 import PaymentsEdit from './components/vistas/payments/PaymentsEdit.jsx';
-import FlatsEdit from './components/vistas/flats/FlatsEdit';
+
 import Users from './components/vistas/users/Users'
 import UserAdd from "./components/vistas/users/UserAdd"
-import Navbar from './components/layout/Navbar'
-import Sidebar from './components/layout/Sidebar'
 import UserEdit from "./components/vistas/users/UserEdit.jsx";
+
+import Services from './components/vistas/services/Services';
+import ServicesAdd from './components/vistas/services/ServicesAdd';
+import ServicesEdit from './components/vistas/services/ServicesEdit';
+
 
 import { AppContextProvider } from "./context/AppContext";
 
@@ -82,6 +95,16 @@ function App() {
                 </Route>
                 <Route path="/Users/:id/edit" exact>
                   <UserEdit />
+                </Route>
+
+                <Route path="/services" exact>
+                  <Services />
+                </Route>
+                <Route path="/services/add" exact>
+                  <ServicesAdd />
+                </Route>
+                <Route path="/services/:id/edit" exact>
+                  <ServicesEdit />
                 </Route>
 
               </section>

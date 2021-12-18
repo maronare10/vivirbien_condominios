@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React,{ useState, useEffect } from 'react'
-import useFetch from '../../server/useFecth';
 import Pagination from '../layout/Pagination'
 
 import { useHistory, useLocation } from "react-router-dom";
@@ -9,29 +8,37 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-const BuidingList = () => {
+const BuildingList = () => {
   const historial = useHistory()
   const query = useQuery();
   const pageParam = query.get("page") || 1 
-  const LIMIT = 8
 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(null);
-  const [error, setError] = useState(null);
-  const [total, setTotal] = useState(null);
+  const [errors, setErrors] = useState(null);
+  const [pagination, setPagination] = useState({
+    page_size: 10,
+    pages: 0
+  });
   
   useEffect(() => {
-    const url = `http://localhost:8000/api/edificios`
+    const url = `http://localhost:8000/api/edificios?page=${pageParam}`
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
 
     axios.request({ method: 'GET', url, headers })
-      .then(res => setData(res.data.results))
+      // .then(res => setData(res.data.results))
+      .then(res => {
+        const { count, page_size, results } = res.data
+        const pages = Math.ceil(count / page_size)
+        setData(results)
+        setPagination({ page_size, pages })
+      })
       .catch(err => {
-        setError(true)
+        setErrors(true)
         console.log("error", err)
       })
-  }, []);
+  }, [pageParam]);
 
   // const { data: buildings, total } = useFetch(
   //   `http://localhost:8000/buildings?_sort=created_at,id&_order=desc,desc&_limit=${LIMIT}_page=${pageParam}`
@@ -95,9 +102,9 @@ const BuidingList = () => {
         </tbody>
       </table>
 
-      {/* <Pagination resource="buildings" pages={pagesNumber} currentPage={pageParam} /> */}
+      <Pagination resource="buildings" pages={pagination.pages} currentPage={pageParam} />
     </>
   )
 }
 
-export default BuidingList
+export default BuildingList

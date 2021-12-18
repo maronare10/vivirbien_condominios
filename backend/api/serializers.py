@@ -83,7 +83,6 @@ class DepartamentoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Departamento
         fields = '__all__'
-        order = 'id'
 
     def get_edificio_extra(self, obj):
         return {
@@ -96,22 +95,37 @@ class DepartamentoSerializer(serializers.ModelSerializer):
 
 
 class ServicioSerializer(serializers.ModelSerializer):
+    condominio_extra = serializers.SerializerMethodField()
+
     class Meta:
         model = Servicio
         fields = '__all__'
+    
+    def get_condominio_extra(self, obj):
+        return {
+            "nombre": obj.condominio.nombre,
+        }
 
 
 class PagoSerializer(serializers.ModelSerializer):
+    departamento_extra = serializers.SerializerMethodField()
+    servicio_extra = serializers.SerializerMethodField()
+
     class Meta:
         model = Pago
         fields = [
             'id',
             'monto_a_pagar', 
+            'monto_pagado',
             'vencimiento',
             'departamento', 
             'servicio', 
             'pagado_por',
             'voucher',
+            'departamento_extra',
+            'servicio_extra',
+            'fecha_creacion',
+            'fecha_actualizacion',
         ]
 
     def to_representation(self, instance):
@@ -119,10 +133,23 @@ class PagoSerializer(serializers.ModelSerializer):
         if (instance.voucher):
             representation['voucher'] = instance.voucher.url
         return representation
+    
+    def get_departamento_extra(self, obj):
+        return {
+            "numero": obj.departamento.numero,
+            "edificio": obj.departamento.edificio.nombre,
+            "propietarios": obj.departamento.propietarios.values('username', 'first_name', 'last_name')
+        }
+    
+    def get_servicio_extra(self, obj):
+        return {
+            "nombre": obj.servicio.nombre,
+        }
 
 
 
 class PropietarioSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = User
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'password' ]

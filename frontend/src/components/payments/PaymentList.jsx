@@ -1,9 +1,7 @@
 import axios from 'axios'
-import React from 'react'
-import useFetch from '../../server/useFecth';
+import React, { useState, useEffect } from 'react'
 import Pagination from '../layout/Pagination'
 import { useHistory, useLocation } from "react-router-dom";
-import useApp from "../../server/useApp";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -13,62 +11,61 @@ const PaymentList = () => {
   const historial = useHistory()
   const query = useQuery();
   const pageParam = query.get("page") || 1 
-  const LIMIT = 8
 
-  const { users, buildings } = useApp()
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(null);
+  const [errors, setErrors] = useState(null);
+  const [pagination, setPagination] = useState({
+    page_size: 10,
+    pages: 0
+  });
 
-  // Consulta a la API
-  const { data: payments, total } = useFetch(
-    `http://localhost:8000/payments?_expand=flat&_sort=created_at,id&_order=desc,desc&_limit=${LIMIT}_page=${pageParam}`
-  );
+  useEffect(() => {
+    const url = `http://localhost:8000/api/pagos?page=${pageParam}`
+    const token = localStorage.getItem('token');
+    const headers = { 'Authorization': `Bearer ${token}` }
 
-  const pagesNumber = Math.ceil(total / LIMIT)
-
-  const findUser = (id) =>  {
-    if (!users) {
-      return ''
-    }
-    const resultado = users.find(user => user.id === id)
-    if (resultado) {
-      return resultado.name
-    }
-    return ''
-  }
-  
-  const findBuilding = (id) => {
-    if (!buildings) {
-      return ''
-    }
-    const resultado = buildings.find(building => building.id === id)
-    if (resultado) {
-      return resultado.name
-    }
-    return ''
-  }
+    axios.request({ method: 'GET', url, headers })
+      .then(res => {
+        const { count, page_size, results } = res.data
+        const pages = Math.ceil(count / page_size)
+        setData(results)
+        setPagination({ count, page_size, pages })
+      })
+      .catch(err => {
+        setErrors(true)
+        historial.push('/payments')
+      })
+  }, [pageParam]);
 
   const handleEdit = (id) => {
     historial.push(`/payments/${id}/edit`)
   }
 
   const handleDelete = (id) => {
-    const url = `http://localhost:8000/payments/${id}`
-
     const confirmDelete = window.confirm('Are you sure to delete this payment?')
 
     if (!confirmDelete) {
       return
     }
 
-    axios
-      .delete(url)
+    const url = `http://localhost:8000/api/pagos/${id}`
+    const token = localStorage.getItem('token');
+    const headers = { 'Authorization': `Bearer ${token}` }
+
+    axios.request({method: 'DELETE', url, headers})
       .then((response) => {
         // La respuesta del server
-        historial.go(0)
+        historial.go(0) // regresa al listado de flats
       })
       .catch((error) => {
         console.log(error)
       });
   }
+
+  const formatDate = (dateStr) => new Intl.DateTimeFormat('es-PE').format(new Date(dateStr))
+
+  const isAdministrador = () => localStorage.getItem('role') === 'administrador'
 
   return (
     <>
@@ -76,48 +73,56 @@ const PaymentList = () => {
         <thead className="table-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">FLAT / USER</th>
-            <th scope="col">DUE DATE</th>
-            <th scope="col">AMOUNT<br />TO PAY</th>
-            <th scope="col">AMOUNT<br />PAID</th>
-            <th scope="col">OP.<br />NUMBER</th>
-            <th scope="col">STATUS</th>
-            <th scope="col">CREATED AT</th>
-            <th scope="col">UPDATED AT</th>
-            <th scope="col">ACTIONS</th>
+            <th scope="col">DPTO.<br />USUARIO</th>
+            <th scope="col">SERVICIO</th>
+            <th scope="col">VENCIMIENTO</th>
+            <th scope="col">MONTO<br />A PAGAR</th>
+            <th scope="col">MONTO<br />PAGADO</th>
+            <th scope="col">ESTADO</th>
+            <th scope="col">FECHA<br />ACTUALIZACION</th>
+            {isAdministrador() && <th scope="col">ACCIONES</th>}
           </tr>
         </thead>
         <tbody>
-          {payments?.map((payment, index) => (
+          {data?.map((payment, index) => (
             <tr key={index}>
               <th scope="row">{payment.id}</th>
               <td>
-                {findBuilding(payment.flat.buildingId).name} {payment.flat.number}<br/>
-                {`${findUser(payment.flat.userId).name}`}
+                <strong>
+                  {payment.departamento_extra.edificio} {payment.departamento_extra.numero}
+                </strong><br/>
+                {payment.departamento_extra.propietarios && 
+                  payment.departamento_extra.propietarios.map(
+                    propietario => <div key={index}>{propietario.username}</div>
+                  )
+                }
               </td>
-              <td>{payment.dueDate}</td>
-              <td>{payment.amountToPay}</td>
-              <td>{payment.amountPaid}</td>
-              <td>{payment.operationNumber}</td>
+              <td>
+                <span className='text-capitalize text-truncate'>{payment.servicio_extra.nombre}</span>
+              </td>
+              <td>{formatDate(payment.vencimiento)}</td>
+              <td>{payment.monto_a_pagar || '0.00'}</td>
+              <td>{payment.monto_pagado || '0.00'}</td>
               <td>
                 {
-                  payment.amountToPay === payment.amountPaid 
+                  payment.monto_a_pagar === payment.monto_pagado 
                   ? <span className="badge bg-success">Pagado</span>
                   : <span className="badge bg-danger">Pendiente</span>
                 }
               </td>
-              <td>{payment.created_at}</td>
-              <td>{payment.updated_at}</td>
-              <td className="d-flex gap-2 justify-content-center">
-                <button className="btn btn-warning" onClick={() => handleEdit(payment.id)}>Edit</button>
-                <button className="btn btn-danger" onClick={() => handleDelete(payment.id)}>Delete</button>
-              </td>
+              <td>{formatDate(payment.fecha_actualizacion)}</td>
+              { isAdministrador() && 
+                <td className="d-flex gap-2 justify-content-center">
+                  <button className="btn btn-warning" onClick={() => handleEdit(payment.id)}>Edit</button>
+                  <button className="btn btn-danger" onClick={() => handleDelete(payment.id)}>Delete</button>
+                </td>
+              }
             </tr>
           ))}
         </tbody>
       </table>
 
-      <Pagination resource="payments" pages={pagesNumber} currentPage={pageParam} />
+      <Pagination resource="payments" pages={pagination.pages} currentPage={pageParam} />
     </>
   )
 }

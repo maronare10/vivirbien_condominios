@@ -4,12 +4,30 @@ import iconBell from '../../asset/icons/icon-bell.svg';
 import iconMenu from '../../asset/icons/icon-menu.svg';
 import useApp from '../../server/useApp';
 
+import { useHistory } from "react-router-dom";
+
 const Navbar = () => {
+  const history = useHistory();
+
   const { toggleSidebar, setToggleSidebar } = useApp()
+
+  const username = localStorage.getItem('username')
+  const role = localStorage.getItem('role')
 
   function openCloseSidebar(e) {
     e.preventDefault()
     setToggleSidebar(!toggleSidebar)
+  }
+
+  function handleLogout(e) {
+    e.preventDefault();
+
+    localStorage.removeItem('token');
+    localStorage.removeItem('condominio');
+    localStorage.removeItem('name');
+    localStorage.removeItem('role');
+
+    history.push("/")
   }
 
   return (
@@ -21,9 +39,8 @@ const Navbar = () => {
           </a>
         </div>
         <div className="MainSeccion__userbuttons">
-        <a href="/">
-            Logout
-          </a>
+          <div>Bienvenid@, {username} ({role})</div>
+          <a href=" " onClick={handleLogout}>Logout</a>
           <a href=" ">
             <img src={iconBell} alt="icon-home"></img>
           </a>

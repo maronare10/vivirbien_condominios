@@ -3,11 +3,13 @@ from rest_framework import generics
 from .models import Condominio, Edificio
 from .serializers import EdificioSerializer
 from rest_framework import serializers
+from .pagination import CustomPagination
 
 class EdificiosListCreate(generics.ListCreateAPIView):
   queryset = Edificio.objects.all().order_by('-id')
   serializer_class = EdificioSerializer 
   permission_class = (IsAuthenticated),
+  pagination_class = CustomPagination
 
   def get_queryset(self):
     usuarioLogueado = self.request.user

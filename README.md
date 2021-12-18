@@ -2,15 +2,31 @@
 
 Este proyecto es el backend para el api de l administrador de condominios y está hecho con django, python, cloudinary, djangorestframework y será subido a Heroku.
 
-Para iniciar el proyecto se deben ejecutar los siguientes comandos en el directorio backend:
+### PROYECTO BACKEND
+
+Para iniciar el proyecto se deben ejecutar los siguientes comandos en el directorio backend si es la primera vez:
 
 ```
+cd backend/
+
+python -m venv venv
+
+source venv/bin/activate
+
 pip install -r requirements.txt
+
+python manage.py migrate
+
+python manage.py loaddata db
 
 python manage.py runserver
 ```
 
-### Como cargar data de prueba:
+> **NOTA SOBRE LOS USUARIOS:** existen tres tipos admin@vivirbien.com(superusuario, solo accede al admin de django), admin@santaelvira.com(admin de condominio, accede solo por el API sin restricciones solo a su condominio) y user#@santaelvira.com(usuario propietario, accede solo por el API con restricciones) y sobre las contraseñas pueden usar el comando "python manage.py changepassword".
+
+### Como cargar data de prueba en backend nuevamente:
+
+Se puede eliminar el archivo db.sqlite o usar el comando flush para limpiar la data.
 
 El comando flush es para limpiar todos los registros de la base de datos:
 
@@ -23,6 +39,21 @@ El comando loaddata es para cargar la data de prueba que se encuentra en db json
 ```
 python manage.py loaddata db 
 ```
+
+
+
+### PROYECTO FRONTEND
+
+Para instalar el proyecto debemos ejecutar los siguientes comandos si es la primera vez:
+
+```
+cd frontend/
+
+npm install
+
+npm start
+```
+
 
 ### Páginas de referencia:
 
@@ -41,7 +72,8 @@ python manage.py loaddata db
 * Documentación para desactivar la interfaz html para el API: https://www.django-rest-framework.org/api-guide/renderers/#jsonrenderer 
 
 
-vALIDACIONES:
+### VALIDACIONES:
+
 * Validado para que se creen edificios sólo dentro de la Residencial a la que pertenece el usuario.
 * Validado para que se cree un único número de departamento por cada edificio.
 * Validado para que no me cree edificios que pertenezcan a otra residencial de la que no es usuario.

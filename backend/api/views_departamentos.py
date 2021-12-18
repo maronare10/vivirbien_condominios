@@ -4,11 +4,13 @@ from rest_framework import serializers
 
 from .models import Departamento, Edificio
 from .serializers import DepartamentoSerializer
+from .pagination import CustomPagination
 
 class DepartamentosListCreate(generics.ListCreateAPIView):
     queryset = Departamento.objects.all().order_by('-id')
     serializer_class = DepartamentoSerializer
     permission_classes = (IsAuthenticated,)
+    pagination_class = CustomPagination
 
     def get_queryset(self):
         condominiosDelUsuario = self.request.user.condominio_set.all()

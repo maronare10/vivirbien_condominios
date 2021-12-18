@@ -4,7 +4,7 @@ import iconHome from '../../asset/icons/icon-home.svg';
 import iconBuilding from '../../asset/icons/icon-building.svg';
 import iconFlats from '../../asset/icons/icon-flats.svg';
 import iconUsers from '../../asset/icons/icon-users.svg';
-// import iconRoles from '../../asset/icons/icon-roles.svg';
+import iconRoles from '../../asset/icons/icon-roles.svg';
 import iconConfig from '../../asset/icons/icon-config.svg';
 import useApp from '../../server/useApp';
 import { Link } from 'react-router-dom';
@@ -17,6 +17,8 @@ const Sidebar = () => {
     console.log(menuName)
     setMenuSelected(menuName)
   }
+
+  const isAdministrador = () => localStorage.getItem('role') === 'administrador'
 
   return (
     <div className={`Sidebar MainSidebar d-flex flex-column flex-shrink-0 p-0 text-white bg-condominio ${toggleSidebar ? 'is-closed' : ''}`}>
@@ -34,24 +36,43 @@ const Sidebar = () => {
             <span>Inicio</span>
           </Link>
         </li>
-        <li className="nav-item">
-          <Link className={`nav-link ${menuSelected === 'buildings' && 'ActiveItem'}`} to="/buildings" onClick={() => activeMenuSelected('buildings')}>
-            <img src={iconBuilding} alt="icon-home"></img>
-            <span>Edificios</span>
-          </Link>
-        </li>
+
+        {isAdministrador() &&
+          <li className="nav-item">
+            <Link className={`nav-link ${menuSelected === 'buildings' && 'ActiveItem'}`} to="/buildings" onClick={() => activeMenuSelected('buildings')}>
+              <img src={iconBuilding} alt="icon-home"></img>
+              <span>Edificios</span>
+            </Link>
+          </li>
+        }
+
+        {isAdministrador() &&
         <li className="nav-item">
           <Link className={`nav-link ${menuSelected === 'flats' && 'ActiveItem'}`} to="/flats" onClick={() => activeMenuSelected('flats')}>
             <img src={iconFlats} alt="icon-home"></img>
             <span>Departamentos</span>
           </Link>
         </li>
+        }
+
+        {isAdministrador() &&
         <li className="nav-item">
           <Link  className={`nav-link ${menuSelected === 'users' && 'ActiveItem'}`} to="./Users" onClick={() => activeMenuSelected('users')}>
             <img src={iconUsers} alt="icon-home"></img>
             <span>Usuarios</span>
           </Link>
         </li>
+        }
+
+        {isAdministrador() &&
+        <li className="nav-item">
+          <Link  className={`nav-link ${menuSelected === 'services' && 'ActiveItem'}`} to="./services" onClick={() => activeMenuSelected('services')}>
+            <img src={iconRoles} alt="icon-home"></img>
+            <span>Services</span>
+          </Link>
+        </li>
+        }
+
         {/* <li className="nav-item">
           <a className="nav-link" href="#">
             <img src={iconRoles} alt="icon-home"></img>
