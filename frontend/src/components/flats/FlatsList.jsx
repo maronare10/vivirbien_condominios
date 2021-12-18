@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React, { useState, useEffect} from 'react'
-import useFetch from '../../server/useFecth';
 import Pagination from '../layout/Pagination'
 import { useHistory, useLocation } from "react-router-dom";
 
@@ -12,33 +11,33 @@ const FlatsList = () => {
   const historial = useHistory()
   const query = useQuery();
   const pageParam = query.get("page") || 1 
-  const LIMIT = 8
-
+  
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(null);
-  const [error, setError] = useState(null);
-  const [total, setTotal] = useState(null);
+  const [errors, setErrors] = useState(null);
+  const [pagination, setPagination] = useState({
+    total: 0,
+    page_size: 10,
+  });
   
   useEffect(() => {
-    const url = `http://localhost:8000/api/departamentos`
+    const url = `http://localhost:8000/api/departamentos?page=${pageParam}`
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
 
     axios.request({ method: 'GET', url, headers })
-      .then(res => setData(res.data.results))
-      .catch(err => {
-        setError(true)
-        console.log("error", err)
+      .then(res => {
+        const { count, page_size, results } = res.data
+        const pages = Math.ceil(count / page_size)
+        setData(results)
+        setPagination({ count, page_size, pages })
       })
-  }, []);
+      .catch(err => {
+        setErrors(true)
+        historial.push('/flats')
+      })
+  }, [pageParam]);
 
-
-  // Consulta a la API
-  // const { data: flats, total } = useFetch(
-  //   `http://localhost:8000/flats?_expand=building&_expand=user&_sort=created_at,id&_order=desc,desc&_limit=${LIMIT}&_page=${pageParam}`
-  // );
-
-  // const pagesNumber = Math.ceil(total / LIMIT)
 
   const handleEdit = (id) => {
     historial.push(`/flats/${id}/edit`)
@@ -55,7 +54,6 @@ const FlatsList = () => {
     const url = `http://localhost:8000/api/departamentos/${id}`
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
-
 
     axios.request({method: 'DELETE', url, headers})
       .then((response) => {
@@ -78,7 +76,6 @@ const FlatsList = () => {
             <th scope="col">EDIFICIO</th>
             <th scope="col">PROPIETARIOS</th>
             <th scope="col">ACCIONES</th>
-
           </tr>
         </thead>
         <tbody>
@@ -102,7 +99,7 @@ const FlatsList = () => {
         </tbody>
       </table>
 
-      {/* <Pagination resource="flats" pages={pagesNumber} currentPage={pageParam} /> */}
+      <Pagination resource="flats" pages={pagination.pages} currentPage={pageParam} />
     </>
   )
 }
