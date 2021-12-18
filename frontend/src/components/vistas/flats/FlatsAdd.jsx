@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react'
 
 import { useHistory } from "react-router-dom";
 
-// import useApp from "../../../server/useApp";
-
 import './FlatsAdd.scss'
 
 const FlatsAdd = () => {
