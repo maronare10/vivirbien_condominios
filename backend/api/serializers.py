@@ -95,9 +95,16 @@ class DepartamentoSerializer(serializers.ModelSerializer):
 
 
 class ServicioSerializer(serializers.ModelSerializer):
+    condominio_extra = serializers.SerializerMethodField()
+
     class Meta:
         model = Servicio
         fields = '__all__'
+    
+    def get_condominio_extra(self, obj):
+        return {
+            "nombre": obj.condominio.nombre,
+        }
 
 
 class PagoSerializer(serializers.ModelSerializer):
@@ -142,6 +149,7 @@ class PagoSerializer(serializers.ModelSerializer):
 
 
 class PropietarioSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'email', ]
+        fields = ['id', 'username', 'first_name', 'last_name', 'email',]

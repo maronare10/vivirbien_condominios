@@ -5,12 +5,14 @@ from rest_framework import generics
 
 from .models import Servicio
 from .serializers import ServicioSerializer
+from .pagination import CustomPagination
 
 
 class ServiciosListCreate(generics.ListCreateAPIView):
     queryset = Servicio.objects.all().order_by('-id')
     serializer_class = ServicioSerializer
     permission_classes = (IsAuthenticated),
+    pagination_class = CustomPagination
 
     def get_queryset(self):
         propietario = self.request.user
