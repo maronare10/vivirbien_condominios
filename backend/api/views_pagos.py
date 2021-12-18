@@ -3,12 +3,14 @@ from rest_framework import generics
 
 from .models import Departamento, Pago, Edificio
 from .serializers import PagoSerializer
+from .pagination import CustomPagination
 
 
 class PagosListCreate(generics.ListCreateAPIView):
     queryset = Pago.objects.all().order_by('-id')
     serializer_class = PagoSerializer
     permission_classes = (IsAuthenticated),
+    pagination_class = CustomPagination
 
     def get_queryset(self):
         propietario = self.request.user
