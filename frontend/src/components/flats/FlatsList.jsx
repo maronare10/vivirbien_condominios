@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../../api/axios'
 import React, { useState, useEffect} from 'react'
 import Pagination from '../layout/Pagination'
 import { useHistory, useLocation } from "react-router-dom";
@@ -21,7 +21,7 @@ const FlatsList = () => {
   });
   
   useEffect(() => {
-    const url = `http://localhost:8000/api/departamentos?page=${pageParam}`
+    const url = `api/departamentos?page=${pageParam}`
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
 
@@ -51,7 +51,7 @@ const FlatsList = () => {
       return
     }
     
-    const url = `http://localhost:8000/api/departamentos/${id}`
+    const url = `api/departamentos/${id}`
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
 

@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../../api/axios'
 import React, { useState, useEffect } from 'react'
 import Pagination from '../layout/Pagination'
 import { useHistory, useLocation } from "react-router-dom";
@@ -21,7 +21,7 @@ const PaymentList = () => {
   });
 
   useEffect(() => {
-    const url = `http://localhost:8000/api/pagos?page=${pageParam}`
+    const url = `api/pagos?page=${pageParam}`
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
 
@@ -49,7 +49,7 @@ const PaymentList = () => {
       return
     }
 
-    const url = `http://localhost:8000/api/pagos/${id}`
+    const url = `api/pagos/${id}`
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
 

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../../api/axios';
 import React, { useState, useEffect } from 'react'
 
 import { useHistory } from "react-router-dom";
@@ -21,7 +21,7 @@ const BuildingsAdd = () => {
   const { nombre, departamentos, pisos, condominio } = datos;
 
   useEffect(() => {
-    const url = 'http://localhost:8000/api/condominios'
+    const url = 'api/condominios'
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
     const config = { method: 'GET', url, headers }
@@ -48,7 +48,7 @@ const BuildingsAdd = () => {
   function handleSubmit(e) {
     e.preventDefault()
 
-    const url = "http://localhost:8000/api/edificios"
+    const url = "api/edificios"
 
     const data = {
       nombre,

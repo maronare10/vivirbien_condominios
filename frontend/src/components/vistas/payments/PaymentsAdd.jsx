@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../../api/axios';
 import React, { useState, useEffect } from 'react'
 
 import { useHistory } from "react-router-dom";
@@ -39,9 +39,9 @@ const PaymentsAdd = () => {
   } = datos;
 
   useEffect(() => {
-    const url_departamentos = 'http://localhost:8000/api/departamentos?page_size=1000'
-    const url_propietarios = 'http://localhost:8000/api/propietarios?page_size=1000'
-    const url_servicios = 'http://localhost:8000/api/servicios?page_size=1000'
+    const url_departamentos = 'api/departamentos?page_size=1000'
+    const url_propietarios = 'api/propietarios?page_size=1000'
+    const url_servicios = 'api/servicios?page_size=1000'
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
     const config_departamentos = { method: 'GET', url: url_departamentos, headers }
@@ -79,7 +79,7 @@ const PaymentsAdd = () => {
   function handleSubmit(e) {
     e.preventDefault()
 
-    const url = "http://localhost:8000/api/pagos"
+    const url = "api/pagos"
 
     const data = {
       monto_a_pagar: Number(monto_a_pagar),

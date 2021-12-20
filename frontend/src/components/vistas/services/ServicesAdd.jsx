@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../../api/axios';
 import React, { useState, useEffect } from 'react'
 
 import { useHistory } from "react-router-dom";
@@ -19,7 +19,7 @@ const ServicesAdd = () => {
   const { nombre, departamentos, pisos, condominio } = datos;
 
   useEffect(() => {
-    const url = 'http://localhost:8000/api/condominios?page_size=1000'
+    const url = 'api/condominios?page_size=1000'
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
     const config = { method: 'GET', url, headers }
@@ -44,7 +44,7 @@ const ServicesAdd = () => {
   function handleSubmit(e) {
     e.preventDefault()
 
-    const url = "http://localhost:8000/api/servicios"
+    const url = "api/servicios"
 
     const data = {
       nombre,

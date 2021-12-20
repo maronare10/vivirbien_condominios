@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "./loginStyles.scss";
 import building from "../../../asset/img/login-building.svg";
 import { useHistory } from "react-router-dom";
-import Axios from 'axios';
+import axios from '../../../api/axios';
 
 function Login() {
   const history = useHistory();
-  const url = "http://localhost:8000/api/token/"
+  const url = "api/token/"
 
   const [datos, setDatos] = useState({
     email: "",
@@ -34,7 +34,7 @@ function Login() {
   const autenticacion = (e) => {
     e.preventDefault()
 
-    Axios.post(url, {
+    axios.post(url, {
       username: email,
       password: pass,
     })

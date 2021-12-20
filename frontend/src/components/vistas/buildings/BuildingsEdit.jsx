@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../../api/axios';
 import React, { useState, useEffect } from 'react'
 
 import { useHistory, useParams } from "react-router-dom";
@@ -23,8 +23,8 @@ const BuildingsEdit = () => {
 
   const { nombre, departamentos, pisos, condominio } = datos;
 
-  const url_condominios = 'http://localhost:8000/api/condominios'
-  const url_edificio = `http://localhost:8000/api/edificios/${id}`
+  const url_condominios = 'api/condominios'
+  const url_edificio = `api/edificios/${id}`
 
   useEffect(() => {
     const token = localStorage.getItem('token');

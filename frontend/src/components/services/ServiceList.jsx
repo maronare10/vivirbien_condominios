@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../../api/axios'
 import React,{ useState, useEffect } from 'react'
 import Pagination from '../layout/Pagination'
 
@@ -22,7 +22,7 @@ const ServiceList = () => {
   });
   
   useEffect(() => {
-    const url = `http://localhost:8000/api/servicios?page=${pageParam}`
+    const url = `api/servicios?page=${pageParam}`
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
 
@@ -52,7 +52,7 @@ const ServiceList = () => {
       return
     }
 
-    const url = `http://localhost:8000/api/servicios/${id}`
+    const url = `api/servicios/${id}`
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
 

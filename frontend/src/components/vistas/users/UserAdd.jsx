@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../../api/axios';
 import React, { useState, useEffect } from 'react'
 
 import { useHistory } from "react-router-dom";
@@ -23,7 +23,7 @@ const UserAdd = () => {
   const { username, nombre, apellido, email, password } = datos
 
   useEffect(() => {
-    const url_departamentos = 'http://localhost:8000/api/departamentos?page_size=1000'
+    const url_departamentos = 'api/departamentos?page_size=1000'
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
     const config_departamentos = { method: 'GET', url: url_departamentos, headers }
@@ -41,7 +41,7 @@ const UserAdd = () => {
   function handleSubmit(e) {
     e.preventDefault()
 
-    const url = "http://localhost:8000/api/propietarios"
+    const url = "api/propietarios"
 
     const data = {
       username,

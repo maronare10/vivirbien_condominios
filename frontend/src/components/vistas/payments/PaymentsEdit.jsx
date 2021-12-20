@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../../api/axios';
 import React, { useState, useEffect } from 'react'
 
 import { useHistory, useParams } from "react-router-dom";
@@ -40,12 +40,12 @@ const PaymentsEdit = () => {
     servicio
   } = datos;
 
-  const url_pago = `http://localhost:8000/api/pagos/${id}`
+  const url_pago = `api/pagos/${id}`
 
   useEffect(() => {
-    const url_departamentos = 'http://localhost:8000/api/departamentos?page_size=1000'
-    const url_propietarios = 'http://localhost:8000/api/propietarios?page_size=1000'
-    const url_servicios = 'http://localhost:8000/api/servicios?page_size=1000'
+    const url_departamentos = 'api/departamentos?page_size=1000'
+    const url_propietarios = 'api/propietarios?page_size=1000'
+    const url_servicios = 'api/servicios?page_size=1000'
 
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }

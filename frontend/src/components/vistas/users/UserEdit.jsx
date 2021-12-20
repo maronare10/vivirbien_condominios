@@ -6,7 +6,7 @@ import { useHistory, useParams } from "react-router-dom";
 import "./UserEdit.scss";
 
 const UserEdit = () => {
-  let cat = localStorage.getItem("condominio");
+  // let cat = localStorage.getItem("condominio");
   const historial = useHistory();
 
   const { id } = useParams();
@@ -25,10 +25,10 @@ const UserEdit = () => {
 
   const { username, nombre, apellido, email, password } = datos;
 
-  const url_propietario = `http://localhost:8000/api/propietarios/${id}`;
+  const url_propietario = `api/propietarios/${id}`;
 
   useEffect(() => {
-    const url_departamentos = 'http://localhost:8000/api/departamentos?page_size=1000'
+    const url_departamentos = 'api/departamentos?page_size=1000'
 
     const token = localStorage.getItem('token');
     const headers = {

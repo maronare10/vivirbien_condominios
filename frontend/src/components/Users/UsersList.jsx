@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../../api/axios'
 import React, { useState, useEffect } from 'react'
 import Pagination from '../layout/Pagination'
 
@@ -23,7 +23,7 @@ const UsersList = () => {
   });
 
   useEffect(() => {
-    const url = `http://localhost:8000/api/propietarios?page=${pageParam}`
+    const url = `api/propietarios?page=${pageParam}`
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
 
@@ -53,7 +53,7 @@ const UsersList = () => {
       return
     }
     
-    const url = `http://localhost:8000/api/propietarios/${id}`
+    const url = `api/propietarios/${id}`
     const token = localStorage.getItem('token');
     const headers = { 'Authorization': `Bearer ${token}` }
 

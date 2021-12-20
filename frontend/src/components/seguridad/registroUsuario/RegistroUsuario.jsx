@@ -2,14 +2,14 @@ import React from 'react';
 import cominghome from '../../../asset/img/cominghome.svg';
 import  "./ruStyle.scss";
 import { useHistory } from "react-router-dom";
-import Axios from 'axios';
+import axios from '../../../api/axios';
 import { useState } from 'react';
 
 
 function RegistroUsuario(props) {
   const history = useHistory()
   
-  const url="http://localhost:8000/api/registrar_condominio"
+  const url="api/registrar_condominio"
 
   const [data, setData] = useState({
     condominio:"",
@@ -33,7 +33,7 @@ function RegistroUsuario(props) {
       condominio_nombre: data.condominio,
   }
 
-    Axios.post(url, data2)
+    axios.post(url, data2)
     .then(res=>{
         console.log(res.data)
         history.push('/')
