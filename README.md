@@ -2,6 +2,12 @@
 
 Este proyecto es el backend para el api de l administrador de condominios y está hecho con django, python, cloudinary, djangorestframework y será subido a Heroku.
 
+Pueden ver el proyecto en el siguite enlace: 
+
+* http://vivirbien.herokuapp.com/ (frontend)
+* https://apivivirbien.herokuapp.com/admin/ (backend)
+
+
 ### PROYECTO BACKEND
 
 Para iniciar el proyecto se deben ejecutar los siguientes comandos en el directorio backend si es la primera vez:
