@@ -63,13 +63,18 @@ npm start
 
 * Para dar permisos a los endpoints: https://www.django-rest-framework.org/api-guide/permissions/
 
-* Configuración por defectode Simple JWT: https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html
+* Configuración por defecto de Simple JWT: https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html
 
 * Propiedades para personalizar el administrador: https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display
 
 * Ayuda a personalizar los campos del administrador: https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#the-display-decorator
 
-* Documentación para desactivar la interfaz html para el API: https://www.django-rest-framework.org/api-guide/renderers/#jsonrenderer 
+* Documentación para desactivar la interfaz html para el API: https://www.django-rest-framework.org/api-guide/renderers/#jsonrenderer
+
+* Documentación para deployar React con Heroku, cero configuración: https://blog.heroku.com/deploying-react-with-zero-configuration
+
+* Documentación para la creación de la API con vistas basadas en clases, ApiViews de Django Restframework:  https://www.django-rest-framework.org/api-guide/generic-views/
+https://www.cdrf.co/
 
 
 ### VALIDACIONES:
@@ -78,3 +83,6 @@ npm start
 * Validado para que se cree un único número de departamento por cada edificio.
 * Validado para que no me cree edificios que pertenezcan a otra residencial de la que no es usuario.
 * Validado para que me no se duplique el nombre del edificio por Residencial (no deben existir dos edificios con el mismo nombre).
+* Validado para que no se dupliquen los nombres de los propietarios.
+* Validado para que los propietarios sólo puedan visualizar sus pago y deudas, sin poder hacer modificaciones.
+* Validado para que sólo sea el administrador del condominio quien pueda, crear, modificar o eliminar, edificios, departamentos y propietarios.
