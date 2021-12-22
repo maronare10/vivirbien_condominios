@@ -5,6 +5,7 @@ from .models import Condominio, Edificio, Departamento, Servicio, Pago
 
 class DepartamentoAdmin(admin.ModelAdmin):
     list_display = ('numero', 'piso', 'edificio', 'get_condominio', 'get_propietarios')
+    filter_horizontal = ('propietarios',)
 
     @admin.display(description='Condominio')
     def get_condominio(self, obj):
